@@ -1,0 +1,84 @@
+export const RENDEZ_VOUS_PAGE = {
+  hero: {
+    eyebrow: "Prendre rendez-vous",
+    title: "Trente minutes. Un chiffrage précis. Aucun engagement.",
+    lede: "Choisissez votre créneau ci-dessous. Nous validons ensemble le périmètre à déléguer, l'économie chiffrée sur votre cas et la formule adaptée. Vous repartez avec une proposition écrite sous 48 heures.",
+  },
+  cadrage: {
+    eyebrow: "Au programme",
+    title: "Ce que nous cadrerons en trente minutes.",
+    points: [
+      {
+        n: "01",
+        title: "Votre contexte",
+        text: "Votre activité, votre volume, les outils que vous utilisez déjà, votre expert-comptable.",
+      },
+      {
+        n: "02",
+        title: "Le périmètre à déléguer",
+        text: "Ce que vous voulez confier, ce que vous voulez garder, où sont les urgences.",
+      },
+      {
+        n: "03",
+        title: "Le chiffrage",
+        text: "Coût actuel de votre administratif, économie sur chaque formule, retour sur investissement.",
+      },
+      {
+        n: "04",
+        title: "La formule adaptée",
+        text: "Recommandation motivée, avec les alternatives, sans pression commerciale.",
+      },
+      {
+        n: "05",
+        title: "La suite",
+        text: "Calendrier de mise en route, prochain point, envoi de la proposition écrite.",
+      },
+    ],
+  },
+  booking: {
+    eyebrow: "Agenda",
+    title: "Choisissez un créneau sur les trois prochaines semaines.",
+    points: [
+      "Créneaux affichés sur les 21 jours à venir",
+      "Durée sélectionnable : 30 minutes (par défaut), 45 minutes, 60 minutes",
+      "Confirmation automatique par email",
+      "Rappel automatique 24 h avant le rendez-vous",
+    ],
+    confirmationTitle: "Merci. Votre rendez-vous est confirmé.",
+    confirmationText:
+      "Vous recevez dans les prochaines minutes un email récapitulatif avec le lien de visioconférence. Un rappel automatique vous sera envoyé 24 heures avant le créneau. Vous pouvez reporter ou annuler à tout moment depuis cet email.",
+  },
+  preparer: {
+    title: "Rien à préparer, ou presque.",
+    lede: "Le rendez-vous est conçu pour être efficace sans travail préparatoire de votre part. Trois informations facilitent néanmoins le chiffrage si vous les avez sous la main :",
+    items: [
+      "Le nombre de factures et de devis que vous émettez en moyenne par mois.",
+      "Le temps que vous ou vos équipes consacrez à l'administratif chaque semaine.",
+      "Votre tarif journalier facturé (ou une valorisation interne de votre temps).",
+    ],
+    closing: "Si vous ne les avez pas, nous les estimerons ensemble pendant l'échange.",
+  },
+  after: {
+    title: "Ce que vous recevez sous 48 heures.",
+    items: [
+      "Une proposition écrite personnalisée, avec la formule recommandée et le périmètre convenu.",
+      "Le devis chiffré, hors taxes, avec conditions.",
+      "Un projet de contrat prêt à être relu par vous et votre conseil.",
+      "Un calendrier de mise en route détaillé — deux semaines en moyenne entre signature et première mission.",
+    ],
+  },
+  writeInstead: {
+    eyebrow: "Vous préférez écrire",
+    title: "Ou envoyez-nous un message écrit.",
+    lede: "Si vous préférez formuler votre demande par écrit, remplissez le formulaire ci-dessous. Nous vous répondons sous 24 heures ouvrées avec une première analyse et une proposition de créneau si nécessaire.",
+    confirmationTitle: "Merci. Votre message est bien arrivé.",
+    confirmationText: "Nous vous répondons sous 24 heures ouvrées.",
+  },
+  objectOptions: [
+    "Question générale",
+    "Renseignement sur une formule",
+    "Renseignement sur une mission ponctuelle",
+    "Renseignement sur TCA Agency",
+    "Autre",
+  ],
+};

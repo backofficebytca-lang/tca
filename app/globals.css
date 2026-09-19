@@ -1,0 +1,155 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #0a0a0a;
+  --color-paper: #ffffff;
+  --color-gray: #6b6b6b;
+  --color-line: #cccccc;
+
+  /*
+   * Single system-UI family across the entire site — deliberately Segoe UI
+   * first (true on Windows), falling through to each platform's own native
+   * UI face elsewhere (San Francisco on macOS/iOS, Roboto on Android/Chrome
+   * OS) rather than downloading a webfont. Hierarchy is built entirely
+   * through weight, size, tracking and line-height — never a second family.
+   */
+  --font-sans:
+    "Segoe UI", "Segoe UI Variable", -apple-system, BlinkMacSystemFont, Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  --font-serif: var(--font-sans);
+  --font-mono: var(--font-sans);
+
+  --container-page: 1280px;
+
+  --radius-tca: 2px;
+}
+
+/* Slow, one-time cinematic zoom for the hero image — never loops, so it
+   reads as a considered opening move rather than a looping background
+   animation. Applied to the <img> itself, separately from the scroll-driven
+   parallax on its parent, so the two transforms never collide. */
+/* A small, slow, continuous bob for the hero's scroll-cue only — the one
+   deliberate exception to "no looping animation" on this site, since a
+   scroll indicator that never moves doesn't read as one. Amplitude and
+   speed are kept small on purpose. */
+@keyframes gentle-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+}
+
+@keyframes hero-kenburns {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.08);
+  }
+}
+
+/* One-time settle-in for the floating support panel's closed button —
+   never loops, arrives once after the page has already painted. */
+@keyframes widget-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@layer base {
+  * {
+    border-color: var(--color-line);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    line-height: 1.05;
+  }
+
+  ::selection {
+    background: var(--color-ink);
+    color: var(--color-paper);
+  }
+
+  a,
+  button {
+    text-underline-offset: 3px;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-ink);
+    outline-offset: 3px;
+  }
+
+  .skip-link {
+    position: absolute;
+    left: 0.75rem;
+    top: -3rem;
+    z-index: 100;
+    background: var(--color-ink);
+    color: var(--color-paper);
+    padding: 0.75rem 1.25rem;
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    transition: top 0.15s ease;
+  }
+
+  .skip-link:focus {
+    top: 0.75rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@media print {
+  header,
+  footer,
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    color: #000;
+    background: #fff;
+  }
+
+  a[href]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+  }
+}
