@@ -2,7 +2,7 @@ export const RENDEZ_VOUS_PAGE = {
   hero: {
     eyebrow: "Prendre rendez-vous",
     title: "Trente minutes. Un chiffrage précis. Aucun engagement.",
-    lede: "Choisissez votre créneau ci-dessous. Nous validons ensemble le périmètre à déléguer, l'économie chiffrée sur votre cas et la formule adaptée. Vous repartez avec une proposition écrite sous 48 heures.",
+    lede: "Choisissez votre créneau ci-dessous. Nous validons ensemble le périmètre à déléguer et la formule adaptée. Vous repartez avec une proposition écrite sous 48 heures.",
   },
   cadrage: {
     eyebrow: "Au programme",

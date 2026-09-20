@@ -1,32 +1,32 @@
 import type { Metadata } from "next";
 import { Hero } from "@/components/sections/Hero";
-import { KeyFacts } from "@/components/sections/KeyFacts";
-import { PersonNotService } from "@/components/sections/PersonNotService";
-import { AudienceSection } from "@/components/sections/AudienceSection";
-import { RelancesSection } from "@/components/sections/RelancesSection";
+import { ProfilesSection } from "@/components/sections/ProfilesSection";
+import { RelancesStack } from "@/components/sections/RelancesStack";
 import { FormulesTeaser } from "@/components/sections/FormulesTeaser";
-import { ChiffrageBlock } from "@/components/sections/ChiffrageBlock";
 import { EngagementsTeaser } from "@/components/sections/EngagementsTeaser";
 import { TestimonialsPlaceholder } from "@/components/sections/TestimonialsPlaceholder";
 import { CtaBand } from "@/components/sections/CtaBand";
+import { SITE } from "@/lib/constants/site";
 
 export const metadata: Metadata = {
-  title: "Assistante administrative externalisée — artisans, TPE, PME | TCA Backoffice",
-  description:
-    "Une professionnelle humaine dédiée pour artisans, auto-entrepreneurs, TPE et PME. Facturation, relances, fournisseurs. Prix fixe, sans engagement long.",
+  title: SITE.metaTitle,
+  description: SITE.metaDescription,
   alternates: { canonical: "/" },
 };
 
+/**
+ * Flow (after the client's reference): cover with a drifting photo roll and
+ * a services strip → centred intro, large growing photo, counters, three
+ * profile cards → stacked reminder steps → pricing cards → commitments in a
+ * two-column photo grid → feedback card → centred call to action.
+ */
 export default function HomePage() {
   return (
     <>
       <Hero />
-      <KeyFacts />
-      <PersonNotService />
-      <AudienceSection />
-      <RelancesSection />
+      <ProfilesSection />
+      <RelancesStack />
       <FormulesTeaser />
-      <ChiffrageBlock />
       <EngagementsTeaser />
       <TestimonialsPlaceholder />
       <CtaBand />

@@ -1,113 +1,81 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { PageHero } from "@/components/sections/PageHero";
 import { Section } from "@/components/layout/Section";
-import { SectionHeading } from "@/components/typography/SectionHeading";
 import { Eyebrow } from "@/components/typography/Eyebrow";
-import { CtaButton } from "@/components/navigation/CtaButton";
 import { Reveal } from "@/components/motion/Reveal";
-import { ParallaxImage } from "@/components/motion/ParallaxImage";
-import { FormulaColumn } from "@/components/formulas/FormulaColumn";
+import { FormulaCard } from "@/components/formulas/FormulaCard";
+import { FormulaSheet } from "@/components/formulas/FormulaSheet";
 import { ComparisonTable } from "@/components/formulas/ComparisonTable";
 import { CtaBand } from "@/components/sections/CtaBand";
-import { FORMULES_PAGE } from "@/lib/content/formules";
-import { HOME } from "@/lib/content/home";
-import { IMAGES } from "@/lib/constants/images";
-import { GRAIN_TEXTURE } from "@/lib/constants/textures";
+import { FORMULA_CARDS, FORMULES_PAGE } from "@/lib/content/formules";
+import { FORMULA_PHOTOS, IMAGES } from "@/lib/constants/images";
 
 export const metadata: Metadata = {
-  title: "Nos trois formules d'assistanat administratif à distance | TCA Backoffice",
+  title: "Nos formules d'assistance administrative externalisée | TCA Backoffice",
   description:
-    "Starter 290€, Essentiel 649€, Pilotage sur devis. Prix fixe, référente dédiée, sans engagement long. Détail des prestations.",
+    "Starter 290 €, Essentiel 649 €, Sur-mesure sur devis. Prix fixe, référente dédiée, abonnement mensuel sans engagement.",
   alternates: { canonical: "/formules" },
 };
 
 export default function FormulesPage() {
-  const { hero, formulas, switching, relationship, comparison } = FORMULES_PAGE;
+  const { hero, sheets, comparison, switching } = FORMULES_PAGE;
 
   return (
     <>
-      <PageHero eyebrow={hero.eyebrow} title={hero.title} lede={hero.lede} />
+      <PageHero eyebrow={hero.eyebrow} title={hero.title} lede={hero.lede} image={IMAGES.deskMug} />
 
-      <Section>
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-          {formulas.map((formula, i) => (
-            <FormulaColumn key={formula.id} {...formula} delay={i * 0.06} />
+      <Section pad="tight" size="display">
+        <h2 className="sr-only">{hero.eyebrow}</h2>
+        <div className="grid gap-4 lg:grid-cols-3">
+          {FORMULA_CARDS.map((card, i) => (
+            <Reveal key={card.id} delay={i * 100} className="h-full">
+              <FormulaCard card={card} image={FORMULA_PHOTOS[i]} moreHref={`#${card.id}`} />
+            </Reveal>
           ))}
         </div>
       </Section>
 
-      {/* "Faire évoluer sa formule" — text keeps its normal column, the
-          image bleeds past the container to the true right edge of the
-          viewport rather than sitting boxed in a rectangle beside it. */}
-      <Section containerClassName="!px-0 md:grid md:grid-cols-12 md:items-center md:gap-10">
-        <div className="px-6 md:col-span-6 md:px-0 md:pl-10 lg:col-span-7 lg:pl-16">
-          <SectionHeading eyebrow={switching.eyebrow} title={switching.title} lede={switching.lede} />
-        </div>
-        <div className="relative mt-10 min-h-[280px] overflow-hidden md:col-span-6 md:mt-0 md:min-h-[420px] lg:col-span-5">
-          <Reveal className="absolute inset-0">
-            {/* Placeholder pending fal.ai generation — see IMAGE 1 prompt.
-                Stands in with an existing, thematically-matched approved
-                asset (organized documents/planning) rather than a random
-                stock photo, so the layout ships complete now. */}
-            <ParallaxImage
-              src={IMAGES.documentsDetail.src}
-              alt={IMAGES.documentsDetail.alt}
-              strength={8}
-            />
-            <div
-              aria-hidden
-              className="absolute inset-0 opacity-[0.05] mix-blend-overlay"
-              style={{ backgroundImage: GRAIN_TEXTURE }}
-            />
-          </Reveal>
+      <Section pad="tight" size="display">
+        <h2 className="sr-only">{sheets.title}</h2>
+        <div className="flex flex-col gap-4">
+          {sheets.items.map((sheet) => (
+            <FormulaSheet key={sheet.id} sheet={sheet} />
+          ))}
         </div>
       </Section>
 
-      <Section className="pt-0">
-        <SectionHeading eyebrow={comparison.eyebrow} title={comparison.title} />
-        <div className="mt-12">
-          <ComparisonTable rows={comparison.rows} />
+      <Section>
+        <h2 className="sr-only">{comparison.title}</h2>
+        <p className="t-lead max-w-3xl">{comparison.included}</p>
+        <div className="mt-10 md:mt-14">
+          <ComparisonTable
+            columns={comparison.columns}
+            sections={comparison.sections}
+            price={comparison.price}
+          />
         </div>
       </Section>
 
-      {/* "Une formule adaptée à votre rythme" — mirrored the other way:
-          image bleeds to the true left edge, text on the right. Same
-          language as the switching section above, opposite direction, so
-          the page reads as a rhythm rather than the same block repeated. */}
-      <Section containerClassName="!px-0 md:grid md:grid-cols-12 md:items-center md:gap-10">
-        <div className="relative order-2 min-h-[280px] overflow-hidden md:order-1 md:col-span-6 md:min-h-[420px] lg:col-span-5">
-          <Reveal className="absolute inset-0">
-            {/* Placeholder pending fal.ai generation — see IMAGE 2 prompt.
-                Stands in with an existing, human-presence asset rather than
-                a random stock photo. */}
-            <ParallaxImage
-              src={IMAGES.portraitWork.src}
-              alt={IMAGES.portraitWork.alt}
-              strength={8}
-            />
-            <div
-              aria-hidden
-              className="absolute inset-0 opacity-[0.05] mix-blend-overlay"
-              style={{ backgroundImage: GRAIN_TEXTURE }}
-            />
-          </Reveal>
-        </div>
-        <div className="order-1 mt-10 flex flex-col gap-6 px-6 md:order-2 md:col-span-6 md:mt-0 md:px-0 md:pr-10 lg:col-span-7 lg:pr-16">
-          <Reveal>
-            <Eyebrow>{relationship.eyebrow}</Eyebrow>
-          </Reveal>
-          <Reveal delay={0.05}>
-            <h2 className="text-4xl tracking-tight text-ink md:text-5xl">{relationship.title}</h2>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <p className="max-w-xl text-base leading-relaxed text-gray md:text-lg">
-              {relationship.text}
-            </p>
-          </Reveal>
-          <Reveal delay={0.15} className="mt-2">
-            <CtaButton href={HOME.hero.primaryCta.href}>{HOME.hero.primaryCta.label}</CtaButton>
-          </Reveal>
-        </div>
+      <Section pad="none" size="display" className="pb-4 md:pb-8">
+        <Reveal>
+          <div className="grid rounded-[18px] bg-mist p-3 lg:grid-cols-12 lg:items-stretch lg:gap-3">
+            <div className="flex flex-col justify-center px-4 py-8 md:px-10 md:py-12 lg:col-span-6 lg:px-14">
+              <Eyebrow on="card">{switching.eyebrow}</Eyebrow>
+              <h2 className="t-h1 mt-5">{switching.title}</h2>
+              <p className="t-lead mt-5 max-w-xl text-gray">{switching.lede}</p>
+            </div>
+            <div className="zoom relative aspect-[4/3] overflow-hidden rounded-xl lg:col-span-6 lg:aspect-auto lg:min-h-[420px]">
+              <Image
+                src={IMAGES.archiveWarehouse.src}
+                alt={IMAGES.archiveWarehouse.alt}
+                fill
+                sizes="(min-width: 1024px) 50vw, 100vw"
+                className="object-cover"
+              />
+            </div>
+          </div>
+        </Reveal>
       </Section>
 
       <CtaBand />

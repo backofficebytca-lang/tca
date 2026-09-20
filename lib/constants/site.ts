@@ -8,10 +8,13 @@ export const SITE = {
   hours: "8h–18h",
   hoursDetail: "8h–18h · lundi au vendredi",
   hoursNote: "Heures ouvrées",
-  founder: "Roukia El Rhenami",
-  founderTitle: "Fondatrice, TCA Backoffice",
   group: "Groupe TCA",
   sisterCompany: "TCA Agency",
+  // PDF v5 §7 — home page metadata.
+  metaTitle:
+    "Assistance administrative externalisée — artisans, auto-entrepreneurs, TPE, PME | TCA Backoffice",
+  metaDescription:
+    "Facturation, relances clients, factures fournisseurs, préparation comptable. Référente dédiée, prix fixe, abonnement mensuel sans engagement.",
 } as const;
 
 /**
@@ -24,11 +27,4 @@ export const PENDING = {
   agencyUrl: "[URL TCA AGENCY À CONFIRMER]",
 } as const;
 
-export const AUDIENCE_PROFILES = [
-  "Artisans et professions du bâtiment",
-  "Auto-entrepreneurs en croissance",
-  "Dirigeants de TPE",
-  "Dirigeants de PME",
-] as const;
-
-export const FORMULA_NAMES = ["Starter", "Essentiel", "Pilotage"] as const;
+export const FORMULA_NAMES = ["Starter", "Essentiel", "Sur-mesure"] as const;

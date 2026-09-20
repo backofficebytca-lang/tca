@@ -6,9 +6,9 @@ export const FAQ_PAGE = {
   },
   items: [
     {
-      question: "IA ou vraie personne ?",
+      question: "Une vraie personne ?",
       answer:
-        "Une vraie personne. Nommée dans votre contrat. Vous connaissez son nom, son email et sa ligne directe dès la signature. Ni chatbot, ni assistant virtuel.",
+        "Une vraie personne. Nommée dans votre contrat. Vous connaissez son nom, son email et sa ligne directe dès la signature.",
     },
     {
       question: "Horaires ?",
@@ -22,7 +22,7 @@ export const FAQ_PAGE = {
     },
     {
       question: "Résiliation ?",
-      answer: "Trois mois initiaux, puis mensuel. Résiliation à tout moment, préavis d'un mois, sans pénalité.",
+      answer: "Abonnement mensuel. Résiliation à tout moment, sans pénalité.",
     },
     {
       question: "Qui traite mon dossier ?",
@@ -36,10 +36,6 @@ export const FAQ_PAGE = {
     {
       question: "Vos outils ou les miens ?",
       answer: "Les vôtres. Si vous n'en avez pas, nous conseillons des outils standards hébergés UE.",
-    },
-    {
-      question: "Marchés publics et Chorus Pro ?",
-      answer: "Oui, dans Pilotage ou en missions ponctuelles.",
     },
     {
       question: "Passage d'une formule à l'autre ?",

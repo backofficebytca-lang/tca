@@ -2,59 +2,33 @@ import { cn } from "@/lib/utils/cn";
 import { Eyebrow } from "@/components/typography/Eyebrow";
 import { Reveal } from "@/components/motion/Reveal";
 
+/**
+ * Eyebrow + H2 (+ optional lede). Only the H2 fades in. Sections are free to
+ * compose these pieces differently — this is a convenience, not a template
+ * every section must use.
+ */
 export function SectionHeading({
   eyebrow,
   title,
   lede,
-  align = "left",
-  tone = "light",
   className,
   titleClassName,
+  ledeClassName,
 }: {
   eyebrow?: string;
   title: string;
   lede?: string;
-  align?: "left" | "center";
-  tone?: "light" | "dark";
   className?: string;
   titleClassName?: string;
+  ledeClassName?: string;
 }) {
   return (
-    <div
-      className={cn(
-        "flex flex-col gap-5",
-        align === "center" && "items-center text-center",
-        className
-      )}
-    >
-      {eyebrow && (
-        <Reveal>
-          <Eyebrow tone={tone}>{eyebrow}</Eyebrow>
-        </Reveal>
-      )}
-      <Reveal delay={0.05}>
-        <h2
-          className={cn(
-            "max-w-3xl text-5xl font-semibold leading-[1.02] tracking-[-0.02em] md:text-6xl lg:text-7xl",
-            tone === "dark" ? "text-paper" : "text-ink",
-            titleClassName
-          )}
-        >
-          {title}
-        </h2>
+    <div className={cn("flex flex-col gap-6", className)}>
+      {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
+      <Reveal>
+        <h2 className={cn("t-h2 max-w-3xl", titleClassName)}>{title}</h2>
       </Reveal>
-      {lede && (
-        <Reveal delay={0.1}>
-          <p
-            className={cn(
-              "max-w-xl text-base leading-relaxed md:text-lg",
-              tone === "dark" ? "text-paper/70" : "text-gray"
-            )}
-          >
-            {lede}
-          </p>
-        </Reveal>
-      )}
+      {lede && <p className={cn("t-lead max-w-[42rem] text-gray", ledeClassName)}>{lede}</p>}
     </div>
   );
 }

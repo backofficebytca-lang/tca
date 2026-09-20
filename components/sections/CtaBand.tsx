@@ -1,12 +1,17 @@
 import { Container } from "@/components/layout/Container";
+import { Eyebrow } from "@/components/typography/Eyebrow";
 import { CtaButton } from "@/components/navigation/CtaButton";
+import { ArrowLink } from "@/components/ui/ArrowLink";
 import { Reveal } from "@/components/motion/Reveal";
-import { ParallaxImage } from "@/components/motion/ParallaxImage";
+import { NoBreak } from "@/components/typography/NoBreak";
 import { HOME } from "@/lib/content/home";
-import { IMAGES } from "@/lib/constants/images";
 
 type Cta = { label: string; href: string };
 
+/**
+ * Closing call to action, as in the reference: centred pill, title, one
+ * sentence, then a solid black button with a text action beside it.
+ */
 export function CtaBand({
   title,
   lede,
@@ -19,35 +24,24 @@ export function CtaBand({
   secondaryCta?: Cta;
 } = {}) {
   const fallback = HOME.finalCta;
-
-  const resolvedTitle = title ?? fallback.title;
-  const resolvedLede = lede ?? fallback.lede;
-  const resolvedPrimary = primaryCta ?? fallback.primaryCta;
-  const resolvedSecondary = secondaryCta ?? fallback.secondaryCta;
+  const primary = primaryCta ?? fallback.primaryCta;
+  const secondary = secondaryCta ?? fallback.secondaryCta;
 
   return (
-    <section
-      data-header-surface="dark"
-      className="relative overflow-hidden border-t border-line py-28 md:py-40"
-    >
-      <ParallaxImage src={IMAGES.darkStatement.src} alt={IMAGES.darkStatement.alt} strength={12} />
-      <div aria-hidden className="absolute inset-0 bg-ink/75" />
-      <Container className="relative flex flex-col items-center gap-8 text-center">
-        <Reveal>
-          <h2 className="max-w-3xl text-5xl leading-[1.05] text-paper md:text-6xl lg:text-7xl">
-            {resolvedTitle}
+    <section className="section-y">
+      <Container>
+        <Reveal className="mx-auto flex max-w-2xl flex-col items-center gap-5 text-center">
+          <Eyebrow>Premier échange gratuit</Eyebrow>
+          <h2 className="t-h1">
+            <NoBreak>{title ?? fallback.title}</NoBreak>
           </h2>
-        </Reveal>
-        <Reveal delay={0.08} className="flex max-w-lg flex-col items-center gap-8">
-          <p className="text-base text-paper/80 md:text-lg">{resolvedLede}</p>
-          <div className="flex flex-wrap items-center justify-center gap-6">
-            <CtaButton href={resolvedPrimary.href} tone="dark">
-              {resolvedPrimary.label}
-            </CtaButton>
-            {resolvedSecondary && (
-              <CtaButton href={resolvedSecondary.href} variant="ghost" tone="dark">
-                {resolvedSecondary.label}
-              </CtaButton>
+          <p className="t-lead max-w-lg text-gray">{lede ?? fallback.lede}</p>
+          <div className="mt-3 flex flex-col items-center gap-6 sm:flex-row sm:gap-8">
+            <CtaButton href={primary.href}>{primary.label}</CtaButton>
+            {secondary && (
+              <ArrowLink href={secondary.href} muted>
+                {secondary.label}
+              </ArrowLink>
             )}
           </div>
         </Reveal>

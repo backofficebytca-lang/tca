@@ -1,15 +1,24 @@
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SupportPanel } from "@/components/support/SupportPanel";
 import { SITE } from "@/lib/constants/site";
 
+// The four weights the design uses. Self-hosted by
+// next/font at build time, display: swap, so no layout-blocking request.
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+  variable: "--font-inter",
+});
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
-  title: `Assistante administrative externalisée — artisans, TPE, PME | ${SITE.name}`,
-  description:
-    "Une professionnelle humaine dédiée pour artisans, auto-entrepreneurs, TPE et PME. Facturation, relances, fournisseurs. Prix fixe, sans engagement long.",
+  title: SITE.metaTitle,
+  description: SITE.metaDescription,
   openGraph: {
     type: "website",
     locale: "fr_FR",
@@ -30,15 +39,14 @@ const professionalServiceJsonLd = {
   name: SITE.name,
   url: SITE.url,
   email: SITE.contactEmail,
-  description:
-    "Une professionnelle humaine dédiée pour artisans, auto-entrepreneurs, TPE et PME. Facturation, relances, fournisseurs. Prix fixe, sans engagement long.",
+  description: SITE.metaDescription,
   areaServed: "FR",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="fr" className="h-full antialiased">
-      <body className="min-h-full flex flex-col bg-paper text-ink font-sans">
+    <html lang="fr" className={`${inter.variable} h-full antialiased`}>
+      <body className="flex min-h-full flex-col bg-paper font-sans text-ink">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(professionalServiceJsonLd) }}

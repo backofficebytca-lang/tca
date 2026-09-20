@@ -1,135 +1,115 @@
-import { FORMULA_NAMES } from "@/lib/constants/site";
-
+/**
+ * Home page copy. Source: TCA-Backoffice-Note-Modifications-v5.pdf (§2), the
+ * latest client instruction. The hero statement is the client's "Option B"
+ * (§5 bis); the descriptive line ("Option A") stays inside the H1 for SEO and
+ * the "auto-entrepreneurs" requirement.
+ */
 export const HOME = {
   hero: {
+    // Kicker from the PDF's hero mock-up (§2.1).
     eyebrow: "Assistance administrative externalisée",
-    title: "Vous dirigez. Nous gérons l'administratif.",
-    lede: "Le service d'assistance administrative externalisée dédié aux artisans, auto-entrepreneurs, TPE et PME. Une professionnelle humaine dédiée pour prendre en charge la facturation, les relances et le suivi fournisseurs. Sans embauche. Sans logiciel supplémentaire. Sans engagement long.",
+    statement: ["Votre administratif.", "Externalisé.", "Simple."],
+    positioning:
+      "Assistance administrative externalisée pour artisans, auto-entrepreneurs, TPE et PME.",
+    subtitle:
+      "Nous prenons en charge la facturation, les relances clients, la gestion des factures fournisseurs et la préparation comptable. Une référente dédiée, joignable directement. Sans embauche, sans changement d'outils, sans engagement.",
     primaryCta: { label: "Prendre rendez-vous", href: "/rendez-vous" },
     secondaryCta: { label: "Découvrir nos formules", href: "/formules" },
-  },
-  keyFacts: [
-    { title: "Ligne directe", value: "8h–18h · lundi au vendredi" },
-    { title: "Relances clients", value: "J+7 · J+15 · J+30" },
-    { title: "Période d'essai", value: "3 mois puis mensuel" },
-    { title: "Embauche requise", value: "Zéro" },
-  ],
-  personNotService: {
-    eyebrow: "Notre approche",
-    title: "Une professionnelle. Pas un service.",
-    lede: "Quand vous appelez, une professionnelle décroche. Quand vous écrivez, une professionnelle répond. Votre référente est humaine, dédiée à votre entreprise, joignable directement du lundi au vendredi de 8 h à 18 h.",
-    lines: [
-      "Ce n'est pas un service d'assistance virtuelle.",
-      "Ce n'est pas un pool tournant d'assistants anonymes.",
-      "Ce n'est pas une plateforme qui vous fait ouvrir un ticket.",
+    counters: [
+      { label: "Ligne directe", value: "8h–18h · lundi au vendredi" },
+      { label: "Suivi des règlements", value: "Zéro facture oubliée" },
+      { label: "Abonnement", value: "Mensuel, sans engagement" },
+      { label: "Embauche requise", value: "Zéro" },
     ],
-    closing:
-      "Vous connaissez son nom, son adresse électronique et sa ligne directe dès la signature.",
   },
-  audience: {
-    eyebrow: "À qui c'est",
-    title: "Un service dédié à quatre profils. Rien d'autre.",
-    lede: "TCA Backoffice n'est pas un service généraliste. Nous accompagnons quatre profils précis, dont nous connaissons les rythmes, les contraintes et les priorités administratives.",
-    profiles: [
+  /** Services named in the PDF, looped as the moving label band. */
+  marquee: [
+    "Facturation",
+    "Relances clients",
+    "Factures fournisseurs",
+    "Préparation comptable",
+    "Suivi des règlements",
+    "Rédaction de courriers",
+    "Classement documentaire",
+    "Notes de frais",
+    "Prélèvements SEPA",
+    "Traitement de la boîte mail",
+  ],
+  profiles: {
+    title: "Trois profils. Un même niveau d'attention.",
+    lede: "Nous accompagnons trois catégories d'entreprises, dont nous connaissons les rythmes et les priorités administratives.",
+    items: [
       {
-        name: "Artisans et professions du bâtiment",
-        text: "Facturation clients, relances, gestion des fournisseurs, suivi des chantiers.",
+        n: "01",
+        name: "Artisans et auto-entrepreneurs",
+        text: "Facturation clients, relances, gestion des factures fournisseurs, classement documentaire.",
       },
       {
-        name: "Auto-entrepreneurs en croissance",
-        text: "Structuration administrative, préparation à la bascule TPE, sans embauche prématurée.",
+        n: "02",
+        name: "TPE",
+        text: "Back-office administratif complet, préparation des pièces pour l'expert-comptable, suivi des règlements.",
       },
       {
-        name: "Dirigeants de TPE",
-        text: "Back-office complet, trésorerie sous contrôle, préparation comptable en ordre.",
-      },
-      {
-        name: "Dirigeants de PME",
-        text: "Pilotage administratif et financier, marchés publics, dossiers de financement.",
+        n: "03",
+        name: "PME",
+        text: "Volume élargi, coordination administrative et suivi documentaire. Périmètre défini sur devis.",
       },
     ],
   },
   relances: {
-    eyebrow: "Relances",
-    title: "Chaque facture, relancée. Chaque euro, rentré.",
-    lede: "Une facture non relancée à J+7 a trois fois moins de chances d'être réglée à l'échéance. Nos relances sont structurées, régulières, documentées. Vous n'y pensez plus. Nous en assurons chaque étape.",
+    eyebrow: "Suivi des règlements",
+    title: "Zéro facture oubliée.",
+    lede: "Chaque facture émise est suivie jusqu'au règlement, sans que vous ayez à y penser. Un protocole clair, adapté à votre relation commerciale.",
     steps: [
       {
-        n: "J+7",
-        title: "Rappel amiable",
-        text: "Message électronique courtois, confirmation de bonne réception, rappel de l'échéance.",
+        n: "01",
+        title: "Un premier rappel avant l'échéance.",
+        text: "Un message courtois pour rappeler la date. Souvent, c'est tout ce qu'il faut.",
       },
       {
-        n: "J+15",
-        title: "Courrier de relance",
-        text: "Courrier formel, ton posé mais net, rappel des CGV.",
+        n: "02",
+        title: "Une relance à échéance dépassée.",
+        text: "Un courrier posé, formel, rappelant les conditions. La conversation reste professionnelle.",
       },
       {
-        n: "J+30",
-        title: "Mise en demeure amiable",
-        text: "Courrier recommandé, ton ferme, rappel des voies de recours.",
+        n: "03",
+        title: "Une mise en demeure si nécessaire.",
+        text: "Un recommandé, ferme, adossé aux CGV. Ce cas reste minoritaire — mais il est traité.",
       },
     ],
-    closing:
-      "Ce protocole est inclus dans les trois formules, sans surcoût. Nous adaptons le ton et le canal à votre relation commerciale.",
   },
   formulesTeaser: {
     eyebrow: "Nos formules",
-    title: "Trois formules. Une même promesse : une personne, joignable, dédiée.",
-    names: FORMULA_NAMES,
-    cards: [
-      {
-        name: "Starter",
-        price: "290 € HT / mois",
-        priceNote: "Prix fixe",
-        pourQui: "Artisans, auto-entrepreneurs",
-        volume: "20 devis / 30 factures / mois",
-        suivi: "Rapport mensuel",
-        cta: { label: "En savoir plus", href: "/formules#starter" },
-      },
-      {
-        name: "Essentiel",
-        price: "649 € HT / mois",
-        priceNote: "Prix fixe",
-        pourQui: "TPE en croissance",
-        volume: "60 devis / 100 factures / mois",
-        suivi: "Rapport hebdomadaire",
-        cta: { label: "En savoir plus", href: "/formules#essentiel" },
-        featured: true,
-      },
-      {
-        name: "Pilotage",
-        price: "Sur devis",
-        priceNote: null,
-        pourQui: "PME, marchés publics",
-        volume: "Sur mesure",
-        suivi: "Hebdomadaire + point mensuel",
-        cta: { label: "Demander un devis", href: "/rendez-vous?formule=pilotage" },
-      },
-    ],
-  },
-  chiffrage: {
-    title: "Votre économie chiffrée en trente minutes.",
-    lede: "Nous ne vous laissons pas deviner. Lors de notre premier rendez-vous, nous chiffrons ensemble le coût actuel de votre administratif et l'économie précise que représente chacune de nos formules pour votre entreprise. Vous repartez avec un devis motivé, pas avec une estimation générique.",
-    cta: { label: "Réserver mon rendez-vous", href: "/rendez-vous" },
+    title: "Trois formules à prix fixe.",
   },
   engagements: {
     eyebrow: "Nos engagements",
-    title: "Sept engagements écrits. Aucune promesse floue.",
+    title: "Six engagements. Zéro promesse floue.",
     items: [
-      { n: "01", title: "Une professionnelle humaine dédiée", text: "Nommée dans votre contrat." },
-      { n: "02", title: "Ligne directe", text: "8h–18h. Pas de ticket." },
-      { n: "03", title: "Économie chiffrée sur mesure", text: "Calculée avec vous lors du premier RDV." },
-      { n: "04", title: "Zéro embauche, zéro logiciel", text: "Nous nous adaptons à vos outils." },
-      { n: "05", title: "Confidentialité écrite", text: "Clause de non-divulgation systématique." },
-      { n: "06", title: "Sans engagement long", text: "3 mois d'essai, puis mensuel." },
-      { n: "07", title: "Expertise sectorielle", text: "Marchés publics, financements, dossiers exigeants." },
+      { keyword: "Dédiée.", title: "Une référente unique", text: "Nommée dans votre contrat." },
+      { keyword: "Directe.", title: "Ligne directe", text: "8h–18h, du lundi au vendredi." },
+      { keyword: "Zéro.", title: "Aucune embauche", text: "Nous travaillons sur vos outils." },
+      {
+        keyword: "Écrite.",
+        title: "Confidentialité contractuelle",
+        text: "Clause de non-divulgation systématique.",
+      },
+      { keyword: "Libre.", title: "Sans engagement", text: "Mensuel, résiliable à tout moment." },
+      {
+        keyword: "Ouverte.",
+        title: "Communication proactive",
+        text: "Dès qu'un dossier avance ou qu'un point requiert votre décision, vous en êtes informée par mail.",
+      },
     ],
     cta: { label: "Voir les engagements en détail", href: "/pourquoi-nous" },
   },
+  testimonials: {
+    title: "Retours clients.",
+    lede: "Publications prochaines.",
+  },
   finalCta: {
-    title: "Reprenez la main sur votre temps.",
-    lede: "Un premier rendez-vous de trente minutes suffit pour cadrer votre besoin, chiffrer votre économie et choisir votre formule.",
+    title: "Prenons rendez-vous.",
+    lede: "Un premier échange de trente minutes suffit à cadrer votre besoin et à définir la formule adaptée.",
     primaryCta: { label: "Prendre rendez-vous", href: "/rendez-vous" },
     secondaryCta: { label: "Poser une question", href: "/rendez-vous#ecrire" },
   },

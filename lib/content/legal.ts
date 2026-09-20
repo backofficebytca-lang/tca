@@ -1,7 +1,7 @@
 import { placeholderParagraph } from "@/lib/content/placeholders";
 
 export const LEGAL_NOTICE =
-  "Page en attente de rédaction juridique définitive (contenu à compléter par la fondatrice ou son conseil avant mise en ligne, conformément au document de contenu fourni).";
+  "Page en attente de rédaction juridique définitive (contenu à compléter par TCA Backoffice ou son conseil avant mise en ligne, conformément au document de contenu fourni).";
 
 export const MENTIONS_LEGALES = {
   title: "Mentions légales",

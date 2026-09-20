@@ -8,7 +8,7 @@ export const CONTENT_PENDING_LABEL =
   "CONTENU À INTÉGRER — DOCUMENT RÉDACTIONNEL";
 
 export function placeholderParagraph(context: string) {
-  return `[${CONTENT_PENDING_LABEL}] Texte définitif de la section « ${context} » à intégrer depuis le document rédactionnel fourni par la fondatrice.`;
+  return `[${CONTENT_PENDING_LABEL}] Texte définitif de la section « ${context} » à intégrer depuis le document rédactionnel fourni par TCA Backoffice.`;
 }
 
 export const PLACEHOLDER_PRICE = "Tarif à confirmer";

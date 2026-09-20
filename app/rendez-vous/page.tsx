@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { PageHero } from "@/components/sections/PageHero";
 import { Section } from "@/components/layout/Section";
-import { SectionHeading } from "@/components/typography/SectionHeading";
 import { Eyebrow } from "@/components/typography/Eyebrow";
+import { CheckIcon } from "@/components/ui/CheckIcon";
 import { PointsList } from "@/components/sections/PointsList";
 import { BookingPanel } from "@/components/sections/BookingPanel";
 import { ContactForm } from "@/components/forms/ContactForm";
 import { Reveal } from "@/components/motion/Reveal";
 import { RENDEZ_VOUS_PAGE } from "@/lib/content/rendez-vous";
+import { IMAGES } from "@/lib/constants/images";
 
 export const metadata: Metadata = {
   title: "Prendre rendez-vous — 30 minutes pour cadrer votre besoin | TCA Backoffice",
@@ -23,72 +25,78 @@ export default function RendezVousPage() {
     <>
       <PageHero eyebrow={hero.eyebrow} title={hero.title} lede={hero.lede} />
 
-      {/* Moved directly under the page intro — a visitor who already knows
-          they'd rather write shouldn't have to scroll past the booking
-          flow first. Tighter top gap than the standard section rhythm
-          (this content is a direct continuation of the intro above it),
-          full standard rhythm below (a genuinely new section follows). */}
-      <Section id="ecrire" className="pt-12 md:pt-16">
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-10 lg:gap-16">
-          <div className="md:col-span-4">
+      {/* The written route sits directly under the intro: a visitor who would
+          rather write never has to scroll for the form. */}
+      <Section id="ecrire" pad="none" size="display" className="pb-16 pt-2 md:pb-24">
+        <div className="grid gap-4 lg:grid-cols-12">
+          <div className="lg:col-span-5">
+            <Eyebrow>{writeInstead.eyebrow}</Eyebrow>
             <Reveal>
-              <Eyebrow>{writeInstead.eyebrow}</Eyebrow>
+              <h2 className="t-h1 mt-5">{writeInstead.title}</h2>
             </Reveal>
-            <Reveal delay={0.05}>
-              <h2 className="mt-5 text-3xl tracking-tight text-ink md:text-4xl">
-                {writeInstead.title}
-              </h2>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <p className="mt-5 max-w-sm text-base leading-relaxed text-gray md:text-lg">
-                {writeInstead.lede}
-              </p>
-            </Reveal>
+            <p className="t-lead mt-5 max-w-md text-gray">{writeInstead.lede}</p>
+            <div className="zoom relative mt-8 hidden aspect-[4/3] w-full overflow-hidden rounded-xl bg-mist lg:block">
+              <Image
+                src={IMAGES.handPen.src}
+                alt={IMAGES.handPen.alt}
+                fill
+                sizes="30vw"
+                className="object-cover"
+                style={{ objectPosition: "72% 40%" }}
+              />
+            </div>
           </div>
-          <div className="md:col-span-8">
-            <Reveal delay={0.12}>
+          <div className="lg:col-span-7">
+            <div className="rounded-[18px] bg-mist p-5 md:p-10">
               <ContactForm />
-            </Reveal>
+            </div>
           </div>
         </div>
       </Section>
 
-      <Section border>
-        <SectionHeading eyebrow={cadrage.eyebrow} title={cadrage.title} />
-        <div className="mt-12">
+      <Section pad="none" size="display" className="pb-16 md:pb-24">
+        <Eyebrow>{cadrage.eyebrow}</Eyebrow>
+        <Reveal>
+          <h2 className="t-h1 mt-5 max-w-3xl">{cadrage.title}</h2>
+        </Reveal>
+        <div className="mt-10 md:mt-14">
           <PointsList points={cadrage.points} />
         </div>
       </Section>
 
-      <Section tone="dark">
+      <Section pad="none" size="display" className="pb-16 md:pb-24">
         <BookingPanel />
       </Section>
 
-      <Section>
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-2">
-          <Reveal>
-            <h2 className="text-3xl tracking-tight text-ink md:text-4xl">{preparer.title}</h2>
-            <p className="mt-4 max-w-md text-base leading-relaxed text-gray">{preparer.lede}</p>
-            <ul className="mt-6 flex flex-col gap-3 border-t border-line pt-6">
-              {preparer.items.map((item) => (
-                <li key={item} className="flex gap-3 text-sm leading-relaxed text-ink/85">
-                  <span aria-hidden className="mt-2 h-1 w-1 shrink-0 rounded-full bg-gray" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-            <p className="mt-4 text-sm text-gray">{preparer.closing}</p>
+      <Section pad="none" size="display" className="pb-20 md:pb-32">
+        <div className="grid gap-4 lg:grid-cols-2">
+          <Reveal className="h-full">
+            <div className="h-full rounded-[18px] bg-mist p-6 md:p-10">
+              <h2 className="t-h2">{preparer.title}</h2>
+              <p className="t-body mt-4 max-w-md text-gray">{preparer.lede}</p>
+              <ul className="mt-6 flex flex-col gap-3">
+                {preparer.items.map((item) => (
+                  <li key={item} className="t-body flex gap-3">
+                    <CheckIcon className="mt-1.5 shrink-0" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className="t-small mt-6 text-gray">{preparer.closing}</p>
+            </div>
           </Reveal>
-          <Reveal delay={0.08}>
-            <h2 className="text-3xl tracking-tight text-ink md:text-4xl">{after.title}</h2>
-            <ul className="mt-6 flex flex-col gap-3 border-t border-line pt-6">
-              {after.items.map((item) => (
-                <li key={item} className="flex gap-3 text-sm leading-relaxed text-ink/85">
-                  <span aria-hidden className="mt-2 h-1 w-1 shrink-0 rounded-full bg-gray" />
-                  {item}
-                </li>
-              ))}
-            </ul>
+          <Reveal delay={100} className="h-full">
+            <div className="h-full rounded-[18px] bg-mist p-6 md:p-10">
+              <h2 className="t-h2">{after.title}</h2>
+              <ul className="mt-6 flex flex-col gap-3">
+                {after.items.map((item) => (
+                  <li key={item} className="t-body flex gap-3">
+                    <CheckIcon className="mt-1.5 shrink-0" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </Reveal>
         </div>
       </Section>

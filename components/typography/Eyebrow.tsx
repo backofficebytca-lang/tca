@@ -1,32 +1,18 @@
-import { cn } from "@/lib/utils/cn";
+import { Pill } from "@/components/ui/Pill";
 
-/**
- * Étiquette de section — pas de pastille pilule façon SaaS (interdite par
- * le brief). Un simple repère carré (écho du point matriciel de la marque)
- * suivi d'un libellé mono espacé, sans conteneur.
- */
+/** Section label — a block wrapper around the pill so it can be centred or spaced. */
 export function Eyebrow({
   children,
   className,
-  tone = "light",
+  on = "page",
 }: {
   children: React.ReactNode;
   className?: string;
-  tone?: "light" | "dark";
+  on?: "page" | "card";
 }) {
   return (
-    <span
-      className={cn(
-        "inline-flex items-center gap-2.5 text-xs font-semibold uppercase tracking-[0.16em]",
-        tone === "dark" ? "text-paper/70" : "text-gray",
-        className
-      )}
-    >
-      <span
-        aria-hidden
-        className={cn("h-1.5 w-1.5 shrink-0", tone === "dark" ? "bg-paper/70" : "bg-ink/60")}
-      />
-      {children}
-    </span>
+    <div className={className}>
+      <Pill on={on}>{children}</Pill>
+    </div>
   );
 }

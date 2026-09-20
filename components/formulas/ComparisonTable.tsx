@@ -1,47 +1,94 @@
-import { Reveal } from "@/components/motion/Reveal";
+type Value = string | boolean;
 
-type Cell = string | boolean;
+type Section = {
+  title: string;
+  rows: { label: string; values: Value[] }[];
+};
 
-function renderCell(value: Cell) {
+function renderValue(value: Value) {
   if (typeof value === "boolean") {
     return (
-      <span aria-hidden className="text-ink">
-        {value ? "•" : "—"}
-      </span>
+      <>
+        <span aria-hidden>{value ? "•" : "—"}</span>
+        <span className="sr-only">{value ? "Inclus" : "Non inclus"}</span>
+      </>
     );
   }
   return value;
 }
 
+/**
+ * Comparison in four thematic blocks (PDF v5 §3.3). A real table so screen
+ * readers get row/column headers; the first column stays pinned while the
+ * three formula columns scroll on narrow screens.
+ */
 export function ComparisonTable({
-  rows,
+  columns,
+  sections,
+  price,
 }: {
-  rows: { label: string; starter: Cell; essentiel: Cell; pilotage: Cell }[];
+  columns: string[];
+  sections: Section[];
+  price: { label: string; values: string[] };
 }) {
   return (
-    <Reveal>
-      <div className="overflow-x-auto border border-line">
-        <table className="w-full min-w-[640px] border-collapse text-sm">
-          <thead>
-            <tr className="bg-ink text-left text-paper">
-              <th className="px-6 py-4 font-normal">Prestation</th>
-              <th className="px-4 py-4 font-medium">Starter</th>
-              <th className="px-4 py-4 font-medium">Essentiel</th>
-              <th className="px-4 py-4 pr-6 font-medium">Pilotage</th>
+    // `relative` makes this the containing block for the absolutely
+    // positioned sr-only labels, so they are clipped with the scroller
+    // instead of stretching the whole page sideways on narrow screens.
+    <div className="relative overflow-x-auto rounded-xl border border-line">
+      <table className="w-full min-w-[560px] border-collapse text-left">
+        <caption className="sr-only">Comparatif des trois formules</caption>
+        <thead>
+          <tr className="bg-ink text-paper">
+            <th
+              scope="col"
+              className="t-small sticky left-0 w-[8.5rem] min-w-[8.5rem] bg-ink px-4 py-5 text-left font-medium sm:w-auto sm:min-w-0 sm:px-6"
+            >
+              Prestation
+            </th>
+            {columns.map((column) => (
+              <th key={column} scope="col" className="t-small px-3 py-5 font-semibold sm:px-4 sm:text-[1.0625rem]">
+                {column}
+              </th>
+            ))}
+          </tr>
+        </thead>
+
+        {sections.map((section) => (
+          <tbody key={section.title}>
+            <tr>
+              <th scope="colgroup" colSpan={columns.length + 1} className="t-small bg-mist px-4 py-3 text-left font-semibold text-ink sm:px-6">
+                {section.title}
+              </th>
             </tr>
-          </thead>
-          <tbody>
-            {rows.map((row, i) => (
-              <tr key={row.label} className={i % 2 === 1 ? "bg-ink/[0.03]" : undefined}>
-                <td className="px-6 py-4 text-ink">{row.label}</td>
-                <td className="px-4 py-4 font-mono text-ink/85">{renderCell(row.starter)}</td>
-                <td className="px-4 py-4 font-mono text-ink/85">{renderCell(row.essentiel)}</td>
-                <td className="px-4 py-4 pr-6 font-mono text-ink/85">{renderCell(row.pilotage)}</td>
+            {section.rows.map((row) => (
+              <tr key={row.label} className="group border-t border-line transition-colors duration-300 hover:bg-mist">
+                <th scope="row" className="t-small sticky left-0 bg-paper px-4 py-4 font-normal text-ink transition-colors duration-300 group-hover:bg-mist sm:px-6">
+                  {row.label}
+                </th>
+                {row.values.map((value, i) => (
+                  <td key={columns[i]} className="t-small px-4 py-4 text-ink">
+                    {renderValue(value)}
+                  </td>
+                ))}
               </tr>
             ))}
           </tbody>
-        </table>
-      </div>
-    </Reveal>
+        ))}
+
+        <tfoot>
+          <tr className="border-t-2 border-ink">
+            <th scope="row" className="t-small sticky left-0 bg-paper px-4 py-5 font-semibold text-ink sm:px-6">
+              {price.label}
+            </th>
+            {price.values.map((value, i) => (
+              <td key={columns[i]} className="t-body px-4 py-5 font-semibold text-ink">
+                {value}
+              </td>
+            ))}
+          </tr>
+        </tfoot>
+      </table>
+    </div>
   );
 }

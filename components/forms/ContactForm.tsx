@@ -2,13 +2,14 @@
 
 import { useState } from "react";
 import { RENDEZ_VOUS_PAGE } from "@/lib/content/rendez-vous";
+import { buttonClasses } from "@/components/navigation/CtaButton";
 import { cn } from "@/lib/utils/cn";
 
-// border-b-2 at rest (not border-b) so focus only ever changes color, never
-// width — a visibly stronger focus state with zero layout shift.
+// A 1px transparent border at rest, so hover/focus only change colour and
+// never shift the layout.
 const inputClass =
-  "w-full border-0 border-b-2 border-line bg-transparent py-3.5 text-ink placeholder:text-gray/70 transition-colors duration-200 focus:border-ink focus:outline-none";
-const labelClass = "font-mono text-xs uppercase tracking-[0.12em] text-gray";
+  "t-body w-full rounded-xl border border-transparent bg-paper px-4 py-3.5 text-ink placeholder:text-gray/70 transition-colors duration-300 hover:border-line focus:border-ink focus:outline-none";
+const labelClass = "t-small text-gray";
 
 export function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
@@ -16,11 +17,9 @@ export function ContactForm() {
 
   if (submitted) {
     return (
-      <div className="border border-line px-8 py-12 text-center" role="status">
-        <p className="text-2xl tracking-tight text-ink">
-          {RENDEZ_VOUS_PAGE.writeInstead.confirmationTitle}
-        </p>
-        <p className="mt-3 text-sm text-gray">
+      <div className="rounded-xl bg-paper px-8 py-12 text-center" role="status">
+        <p className="t-h3 text-ink">{RENDEZ_VOUS_PAGE.writeInstead.confirmationTitle}</p>
+        <p className="t-small mt-3 text-gray">
           {RENDEZ_VOUS_PAGE.writeInstead.confirmationText}
         </p>
       </div>
@@ -29,7 +28,7 @@ export function ContactForm() {
 
   return (
     <form
-      className="flex flex-col gap-10"
+      className="flex flex-col gap-6"
       onSubmit={(e) => {
         e.preventDefault();
         // Intégration d'envoi d'email à raccorder (API RGPD, hébergée en UE)
@@ -43,7 +42,7 @@ export function ContactForm() {
         <input type="text" id="societe-site" name="societe-site" tabIndex={-1} autoComplete="off" />
       </div>
 
-      <div className="grid grid-cols-1 gap-x-8 gap-y-9 md:grid-cols-2">
+      <div className="grid grid-cols-1 gap-x-5 gap-y-6 md:grid-cols-2">
         <div className="flex flex-col gap-2">
           <label className={labelClass} htmlFor="nom">
             Nom, prénom *
@@ -136,38 +135,28 @@ export function ContactForm() {
         />
       </div>
 
-      <label className="flex items-start gap-3 text-sm text-gray">
+      <label className="t-small flex items-start gap-3 text-gray">
         <input
           required
           type="checkbox"
           name="consentement"
           checked={consent}
           onChange={(e) => setConsent(e.target.checked)}
-          className="mt-1 h-4 w-4 shrink-0 border border-line accent-ink"
+          className="mt-1 h-4 w-4 shrink-0 accent-ink"
         />
         <span>
           J&rsquo;accepte que mes données soient utilisées pour être recontacté·e, conformément à la{" "}
-          <a href="/confidentialite" className="underline underline-offset-4 hover:text-ink">
+          <a href="/confidentialite" className="text-ink underline underline-offset-4">
             politique de confidentialité
           </a>
           . *
         </span>
       </label>
 
-      {/* Matches CtaButton's solid variant exactly (dotted frame, invert on
-          hover, travelling arrow) — a native <button> since CtaButton itself
-          renders a Link, which can't submit a form. */}
-      <button
-        type="submit"
-        className="group relative inline-flex w-fit items-center gap-3 rounded-[var(--radius-tca)] border border-dotted border-ink bg-ink px-7 py-3.5 text-[0.9rem] font-semibold tracking-[0.01em] text-paper transition-[background-color,color,border-color] duration-[250ms] ease-out hover:bg-paper hover:text-ink active:scale-[0.98]"
-      >
-        <span>Envoyer ma demande</span>
-        <span
-          aria-hidden
-          className="inline-block transition-transform duration-[250ms] ease-out group-hover:translate-x-1"
-        >
-          →
-        </span>
+      {/* Same classes as CtaButton's solid variant — a native <button>, since
+          CtaButton renders a Link, which can't submit a form. */}
+      <button type="submit" className={buttonClasses("solid", "w-full sm:w-fit sm:!px-10 sm:!py-4")}>
+        Envoyer ma demande
       </button>
     </form>
   );

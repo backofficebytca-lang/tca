@@ -1,67 +1,231 @@
 @import "tailwindcss";
 
+/*
+ * TCA Backoffice — design tokens.
+ *
+ * The visual language follows the client's reference (a light, airy agency
+ * layout): white pages, soft grey rounded cards, pill labels, outlined tag
+ * chips, moderate Inter headings with tight tracking, full-colour photography.
+ * The UI itself stays neutral — black, white and greys, no accent colour.
+ */
 @theme {
-  --color-ink: #0a0a0a;
+  --color-ink: #0a0a0a; /* main black — text, solid buttons */
+  --color-title: #111111; /* headings */
+  --color-gray: #555555; /* captions and secondary text */
+  --color-line: #e5e5e5; /* hairlines, outlines */
+  --color-mist: #f4f4f4; /* card surface, pills */
   --color-paper: #ffffff;
-  --color-gray: #6b6b6b;
-  --color-line: #cccccc;
 
-  /*
-   * Single system-UI family across the entire site — deliberately Segoe UI
-   * first (true on Windows), falling through to each platform's own native
-   * UI face elsewhere (San Francisco on macOS/iOS, Roboto on Android/Chrome
-   * OS) rather than downloading a webfont. Hierarchy is built entirely
-   * through weight, size, tracking and line-height — never a second family.
-   */
   --font-sans:
-    "Segoe UI", "Segoe UI Variable", -apple-system, BlinkMacSystemFont, Roboto,
+    var(--font-inter), "Inter", -apple-system, BlinkMacSystemFont,
     "Helvetica Neue", Arial, sans-serif;
-  --font-serif: var(--font-sans);
-  --font-mono: var(--font-sans);
 
-  --container-page: 1280px;
+  --container-page: 1440px;
+  --container-display: 1520px;
 
-  --radius-tca: 2px;
+  /* Rounded cards and pills, as in the reference. */
+  --radius-card: 12px;
+  --radius-feature: 18px;
 }
 
-/* Slow, one-time cinematic zoom for the hero image — never loops, so it
-   reads as a considered opening move rather than a looping background
-   animation. Applied to the <img> itself, separately from the scroll-driven
-   parallax on its parent, so the two transforms never collide. */
-/* A small, slow, continuous bob for the hero's scroll-cue only — the one
-   deliberate exception to "no looping animation" on this site, since a
-   scroll indicator that never moves doesn't read as one. Amplitude and
-   speed are kept small on purpose. */
-@keyframes gentle-bounce {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(5px);
-  }
+/* ─────────────────────────────────────────────────────────────────────────
+   Typography — moderate scale, tight tracking, as in the reference:
+   H1 ≈ 47–64px / 500–600, H2 ≈ 30–40px / 500, H3 ≈ 22–30px / 500,
+   body 16px, lead 18–20px in grey, labels 12px.
+   ───────────────────────────────────────────────────────────────────────── */
+@utility t-hero {
+  font-size: clamp(2.5rem, 1.3rem + 4.4vw, 4.5rem);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1.06;
 }
 
-@keyframes hero-kenburns {
+@utility t-display {
+  /* Inner-page H1. */
+  font-size: clamp(2.25rem, 1.3rem + 3.4vw, 3.9rem);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1.08;
+}
+
+@utility t-h1 {
+  font-size: clamp(2rem, 1.3rem + 2.5vw, 3.1rem);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+}
+
+@utility t-h2 {
+  font-size: clamp(1.75rem, 1.25rem + 1.5vw, 2.5rem);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+}
+
+@utility t-h3 {
+  font-size: clamp(1.3rem, 1.15rem + 0.55vw, 1.75rem);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+}
+
+@utility t-lead {
+  font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
+  font-weight: 400;
+  letter-spacing: -0.005em;
+  line-height: 1.45;
+}
+
+@utility t-body {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.55;
+}
+
+@utility t-small {
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+@utility t-eyebrow {
+  /* The 12px label used inside pills. */
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  line-height: 1.4;
+}
+
+@utility t-price {
+  font-size: clamp(2.5rem, 1.9rem + 2.4vw, 3.75rem);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+@utility t-stat {
+  font-size: clamp(1.5rem, 1.1rem + 1.6vw, 2.25rem);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 1.1;
+}
+
+@utility t-button {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1;
+}
+
+/* Vertical rhythm between major sections. */
+@utility section-y {
+  padding-block: clamp(4.5rem, 3rem + 5vw, 8rem);
+}
+
+/* ── Motion ───────────────────────────────────────────────────────────────
+   Entrance = fade + 30px rise over 800ms with a strong ease-out, exactly the
+   reference's appear effect. All CSS or IntersectionObserver; reduced-motion
+   users get every end state immediately (see the media query below). */
+@keyframes rise {
   from {
-    transform: scale(1);
+    transform: translateY(105%);
   }
   to {
-    transform: scale(1.08);
+    transform: none;
   }
 }
 
-/* One-time settle-in for the floating support panel's closed button —
-   never loops, arrives once after the page has already painted. */
-@keyframes widget-in {
+@keyframes fade-up {
   from {
     opacity: 0;
-    transform: translateY(14px) scale(0.96);
+    transform: translateY(30px);
   }
   to {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: none;
   }
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes glass-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Headline phrases slide up from behind a mask. */
+.rise {
+  animation: rise 1000ms cubic-bezier(0.35, 0, 0, 1) both;
+  animation-delay: var(--d, 0ms);
+}
+
+.fade-up {
+  animation: fade-up 800ms cubic-bezier(0.35, 0, 0, 1) both;
+  animation-delay: var(--d, 0ms);
+}
+
+.glass-in {
+  animation: glass-in 800ms cubic-bezier(0.35, 0, 0, 1) 900ms both;
+}
+
+/* Endless horizontal track. Duplicate the content once; -50% loops it. */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee var(--marquee-d, 60s) linear infinite;
+}
+
+.marquee-reverse .marquee-track {
+  animation-direction: reverse;
+}
+
+.marquee:hover .marquee-track,
+.marquee:focus-within .marquee-track {
+  animation-play-state: paused;
+}
+
+/* Soft fade at both ends of a horizontal strip. */
+.mask-x {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 7.5%, #000 92.5%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 7.5%, #000 92.5%, transparent);
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hover behaviours. */
+.zoom img {
+  transition: transform 900ms cubic-bezier(0.35, 0, 0, 1);
+}
+
+.zoom:hover img {
+  transform: scale(1.05);
+}
+
+.lift {
+  transition:
+    transform 500ms cubic-bezier(0.35, 0, 0, 1),
+    background-color 300ms ease;
+}
+
+.lift:hover {
+  transform: translateY(-6px);
 }
 
 @layer base {
@@ -76,16 +240,18 @@
   body {
     background: var(--color-paper);
     color: var(--color-ink);
+    font-size: 1rem;
+    line-height: 1.55;
+    text-rendering: optimizeLegibility;
   }
 
   h1,
   h2,
   h3,
   h4 {
-    font-family: var(--font-sans);
-    font-weight: 600;
-    letter-spacing: -0.015em;
-    line-height: 1.05;
+    color: var(--color-title);
+    font-weight: 500;
+    overflow-wrap: break-word;
   }
 
   ::selection {
@@ -95,7 +261,7 @@
 
   a,
   button {
-    text-underline-offset: 3px;
+    text-underline-offset: 4px;
   }
 
   :focus-visible {
@@ -111,13 +277,14 @@
     background: var(--color-ink);
     color: var(--color-paper);
     padding: 0.75rem 1.25rem;
-    font-family: var(--font-sans);
+    border-radius: 12px;
     font-size: 0.875rem;
     transition: top 0.15s ease;
   }
 
   .skip-link:focus {
     top: 0.75rem;
+    outline-color: var(--color-paper);
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -132,6 +299,18 @@
       animation-iteration-count: 1 !important;
       transition-duration: 0.001ms !important;
       scroll-behavior: auto !important;
+    }
+
+    .marquee-track {
+      animation: none !important;
+    }
+
+    .lift:hover {
+      transform: none;
+    }
+
+    .zoom:hover img {
+      transform: none;
     }
   }
 }

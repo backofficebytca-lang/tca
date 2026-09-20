@@ -3,11 +3,12 @@ export type NavItem = {
   href: string;
 };
 
+// Order and labels: PDF v5 §6.4 — "Services" precedes "Formules".
 export const MAIN_NAV: NavItem[] = [
   { label: "Accueil", href: "/" },
-  { label: "Pourquoi nous choisir", href: "/pourquoi-nous" },
-  { label: "Nos services", href: "/services" },
-  { label: "Nos formules", href: "/formules" },
+  { label: "Services", href: "/services" },
+  { label: "Formules", href: "/formules" },
+  { label: "Pourquoi nous", href: "/pourquoi-nous" },
   { label: "FAQ", href: "/faq" },
 ];
 
@@ -22,20 +23,20 @@ export const FOOTER_COLUMNS: { title: string; links: NavItem[] }[] = [
     links: [
       { label: "Starter", href: "/formules#starter" },
       { label: "Essentiel", href: "/formules#essentiel" },
-      { label: "Pilotage", href: "/formules#pilotage" },
+      { label: "Sur-mesure", href: "/formules#sur-mesure" },
     ],
   },
   {
     title: "Services",
     links: [
-      { label: "Missions ponctuelles", href: "/services#missions-ponctuelles" },
+      { label: "Services à la carte", href: "/services#services-a-la-carte" },
       { label: "TCA Agency", href: "/services#tca-agency" },
     ],
   },
   {
     title: "Découvrir",
     links: [
-      { label: "Pourquoi nous choisir", href: "/pourquoi-nous" },
+      { label: "Pourquoi nous", href: "/pourquoi-nous" },
       { label: "FAQ", href: "/faq" },
     ],
   },

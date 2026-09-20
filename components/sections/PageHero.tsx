@@ -1,61 +1,61 @@
+import Image from "next/image";
 import { Container } from "@/components/layout/Container";
 import { Eyebrow } from "@/components/typography/Eyebrow";
-import { HeroTextReveal } from "@/components/motion/HeroTextReveal";
-import { Reveal } from "@/components/motion/Reveal";
-import { ParallaxImage } from "@/components/motion/ParallaxImage";
-import { GRAIN_TEXTURE } from "@/lib/constants/textures";
+import { NoBreak } from "@/components/typography/NoBreak";
+import { ScaleOnScroll } from "@/components/motion/ScaleOnScroll";
 
+type Photo = { src: string; alt: string; position?: string };
+
+/**
+ * Opening of every inner page: pill, H1 on the left, intro on the right
+ * aligned to the title's baseline and — when a photograph is supplied — one
+ * wide rounded photograph that grows slightly as it scrolls into view.
+ */
 export function PageHero({
   eyebrow,
   title,
   lede,
-  children,
   image,
+  children,
 }: {
   eyebrow: string;
   title: string;
   lede?: string;
+  image?: Photo;
   children?: React.ReactNode;
-  image?: { src: string; alt: string };
 }) {
   return (
-    <section className="border-b border-line pb-0 pt-14 md:pt-20">
-      <Container>
-        <Reveal>
-          <Eyebrow className="mb-6">{eyebrow}</Eyebrow>
-        </Reveal>
-        <HeroTextReveal
-          text={title}
-          as="h1"
-          className="max-w-4xl text-5xl leading-[1.0] text-ink sm:text-6xl md:text-7xl lg:text-[5rem]"
-        />
-        {lede && (
-          <Reveal delay={0.12} className="mt-7 max-w-xl">
-            <p className="text-base leading-relaxed text-gray md:text-lg">{lede}</p>
-          </Reveal>
-        )}
-        {children && (
-          <Reveal delay={0.18} className="mt-8">
-            {children}
-          </Reveal>
-        )}
+    <section>
+      <Container size="display" className="pb-10 pt-8 md:pb-14 md:pt-14">
+        <Eyebrow className="fade-up">{eyebrow}</Eyebrow>
+        <div className="mt-5 grid gap-6 lg:grid-cols-12 lg:items-end lg:gap-x-16">
+          <h1 className="t-display fade-up lg:col-span-8" style={{ ["--d" as string]: "100ms" }}>
+            <NoBreak>{title}</NoBreak>
+          </h1>
+          {lede && (
+            <p className="t-lead fade-up text-gray lg:col-span-4" style={{ ["--d" as string]: "250ms" }}>
+              {lede}
+            </p>
+          )}
+        </div>
+        {children && <div className="mt-10">{children}</div>}
       </Container>
-      {image ? (
-        // Bled to the right edge, ink ground standing as negative space on
-        // the left — the same asymmetric language as the homepage's
-        // editorial break, not a flat full-width rectangle.
-        <Reveal delay={0.15} className="relative mt-12 h-[42svh] min-h-[260px] w-full overflow-hidden bg-ink md:mt-16 md:h-[54svh]">
-          <div className="absolute inset-y-0 right-0 w-[88%] sm:w-[80%] lg:w-[68%]">
-            <ParallaxImage src={image.src} alt={image.alt} strength={8} />
-            <div
-              aria-hidden
-              className="absolute inset-0 opacity-[0.05] mix-blend-overlay"
-              style={{ backgroundImage: GRAIN_TEXTURE }}
-            />
-          </div>
-        </Reveal>
-      ) : (
-        <div className="pb-14 md:pb-20" />
+      {image && (
+        <Container size="display" className="pb-4 md:pb-8">
+          <ScaleOnScroll from={0.94}>
+            <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl bg-mist sm:aspect-[21/9]">
+              <Image
+                src={image.src}
+                alt={image.alt}
+                fill
+                priority
+                sizes="(min-width: 1520px) 1440px, 100vw"
+                className="object-cover"
+                style={{ objectPosition: image.position }}
+              />
+            </div>
+          </ScaleOnScroll>
+        </Container>
       )}
     </section>
   );
