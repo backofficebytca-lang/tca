@@ -2,7 +2,7 @@ import Link from "next/link";
 import { NoBreak } from "@/components/typography/NoBreak";
 import { cn } from "@/lib/utils/cn";
 
-type Variant = "solid" | "outline";
+type Variant = "solid" | "outline" | "light";
 
 /**
  * Buttons: rounded 12px. Solid = black with white text; outline = a hairline
@@ -11,9 +11,11 @@ type Variant = "solid" | "outline";
 export function buttonClasses(variant: Variant = "solid", className?: string) {
   return cn(
     "group inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3.5 t-button transition-[background-color,color,transform] duration-300 ease-out",
-    variant === "solid"
-      ? "bg-ink text-paper hover:bg-[#2a2d36]"
-      : "border border-ink/20 bg-transparent text-ink hover:border-ink hover:bg-ink hover:text-paper",
+    variant === "solid" && "bg-ink text-paper hover:bg-[#2a2d36]",
+    variant === "outline" &&
+      "border border-ink/20 bg-transparent text-ink hover:border-ink hover:bg-ink hover:text-paper",
+    // White button, for use on a photograph.
+    variant === "light" && "bg-paper text-ink hover:bg-paper/85",
     className
   );
 }

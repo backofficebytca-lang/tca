@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { RENDEZ_VOUS_PAGE } from "@/lib/content/rendez-vous";
+import { SITE } from "@/lib/constants/site";
 import { buttonClasses } from "@/components/navigation/CtaButton";
 import { cn } from "@/lib/utils/cn";
 
@@ -14,6 +15,31 @@ const labelClass = "t-small text-gray";
 export function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
   const [consent, setConsent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [failed, setFailed] = useState(false);
+
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    if (sending) return;
+    setSending(true);
+    setFailed(false);
+    const form = new FormData(e.currentTarget);
+    const payload: Record<string, unknown> = Object.fromEntries(form.entries());
+    payload.consentement = form.get("consentement") === "on";
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) throw new Error(String(res.status));
+      setSubmitted(true);
+    } catch {
+      setFailed(true);
+    } finally {
+      setSending(false);
+    }
+  }
 
   if (submitted) {
     return (
@@ -29,12 +55,7 @@ export function ContactForm() {
   return (
     <form
       className="flex flex-col gap-6"
-      onSubmit={(e) => {
-        e.preventDefault();
-        // Intégration d'envoi d'email à raccorder (API RGPD, hébergée en UE)
-        // conformément aux contraintes techniques du cahier des charges.
-        setSubmitted(true);
-      }}
+      onSubmit={onSubmit}
     >
       {/* Honeypot anti-spam — laissé vide par les humains, sans reCAPTCHA Google */}
       <div className="hidden" aria-hidden="true">
@@ -155,8 +176,22 @@ export function ContactForm() {
 
       {/* Same classes as CtaButton's solid variant — a native <button>, since
           CtaButton renders a Link, which can't submit a form. */}
-      <button type="submit" className={buttonClasses("solid", "w-full sm:w-fit sm:!px-10 sm:!py-4")}>
-        Envoyer ma demande
+      {failed && (
+        <p role="alert" className="t-small rounded-xl bg-paper px-4 py-3 text-ink">
+          L&rsquo;envoi a échoué. Merci de réessayer, ou d&rsquo;écrire directement à{" "}
+          <a href={`mailto:${SITE.contactEmail}`} className="underline underline-offset-4">
+            {SITE.contactEmail}
+          </a>
+          .
+        </p>
+      )}
+
+      <button
+        type="submit"
+        disabled={sending}
+        className={buttonClasses("solid", "w-full disabled:opacity-60 sm:w-fit sm:!px-10 sm:!py-4")}
+      >
+        {sending ? "Envoi en cours…" : "Envoyer ma demande"}
       </button>
     </form>
   );

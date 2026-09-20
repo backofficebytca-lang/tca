@@ -11,7 +11,7 @@ import { cn } from "@/lib/utils/cn";
 const noopSubscribe = () => () => {};
 
 /**
- * Below 1024px the header shows a text "Menu" button (as in the reference).
+ * Below 1024px the header shows a three-line hamburger (44px touch target).
  * It opens a full-screen white panel with the links at heading size and the
  * appointment CTA. Portaled to <body> so it escapes the header's blur
  * stacking context; Escape closes it and page scroll is locked while open.
@@ -51,9 +51,18 @@ export function MobileNav() {
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
         aria-controls="mobile-nav"
-        className="fixed right-3 top-[17px] z-50 rounded-lg px-3 py-2.5 text-[0.875rem] font-semibold text-ink lg:hidden"
+        aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
+        className="fixed right-[9px] top-[14px] z-50 flex h-11 w-11 items-center justify-center rounded-lg text-ink lg:hidden"
       >
-        {open ? "Fermer" : "Menu"}
+        {open ? (
+          <svg viewBox="0 0 24 24" width="26" height="26" fill="none" aria-hidden>
+            <path d="M6 6l12 12M18 6 6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+          </svg>
+        ) : (
+          <svg viewBox="0 0 24 24" width="26" height="26" fill="none" aria-hidden>
+            <path d="M4 6.5h16M4 12h16M4 17.5h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+          </svg>
+        )}
       </button>
 
       <div
@@ -94,7 +103,7 @@ export function MobileNav() {
   );
 
   if (!mounted) {
-    return <div className="h-10 w-16 lg:hidden" aria-hidden />;
+    return <div className="h-11 w-11 lg:hidden" aria-hidden />;
   }
 
   return createPortal(content, document.body);

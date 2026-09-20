@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Hero } from "@/components/sections/Hero";
+import { PhotoRollBand } from "@/components/sections/PhotoRollBand";
 import { ProfilesSection } from "@/components/sections/ProfilesSection";
 import { RelancesStack } from "@/components/sections/RelancesStack";
 import { FormulesTeaser } from "@/components/sections/FormulesTeaser";
@@ -15,8 +16,8 @@ export const metadata: Metadata = {
 };
 
 /**
- * Flow (after the client's reference): cover with a drifting photo roll and
- * a services strip → centred intro, large growing photo, counters, three
+ * Flow (after the client's reference): photographic cover → the drifting photo
+ * roll and services strip → centred intro, large growing photo, counters, three
  * profile cards → stacked reminder steps → pricing cards → commitments in a
  * two-column photo grid → feedback card → centred call to action.
  */
@@ -24,6 +25,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <PhotoRollBand />
       <ProfilesSection />
       <RelancesStack />
       <FormulesTeaser />
