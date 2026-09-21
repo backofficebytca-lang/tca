@@ -5,6 +5,7 @@
  * starts with "=" stays plain text and can never run as a formula.
  */
 import type { ContactData } from "@/lib/server/notify";
+import { envValue } from "@/lib/server/env";
 
 const HEADERS = [
   "Date",
@@ -21,10 +22,10 @@ const HEADERS = [
 
 export const sheetConfigured = () =>
   Boolean(
-    process.env.GOOGLE_CLIENT_ID &&
-      process.env.GOOGLE_CLIENT_SECRET &&
-      process.env.GOOGLE_REFRESH_TOKEN &&
-      process.env.GOOGLE_SHEET_ID
+    envValue("GOOGLE_CLIENT_ID") &&
+      envValue("GOOGLE_CLIENT_SECRET") &&
+      envValue("GOOGLE_REFRESH_TOKEN") &&
+      envValue("GOOGLE_SHEET_ID")
   );
 
 let cached: { token: string; expires: number } | null = null;
@@ -36,9 +37,9 @@ async function accessToken() {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: new URLSearchParams({
-      client_id: process.env.GOOGLE_CLIENT_ID!,
-      client_secret: process.env.GOOGLE_CLIENT_SECRET!,
-      refresh_token: process.env.GOOGLE_REFRESH_TOKEN!,
+      client_id: envValue("GOOGLE_CLIENT_ID"),
+      client_secret: envValue("GOOGLE_CLIENT_SECRET"),
+      refresh_token: envValue("GOOGLE_REFRESH_TOKEN"),
       grant_type: "refresh_token",
     }),
     cache: "no-store",
@@ -57,8 +58,8 @@ async function accessToken() {
   return cached.token;
 }
 
-const base = () => `https://sheets.googleapis.com/v4/spreadsheets/${process.env.GOOGLE_SHEET_ID}/values`;
-const tabPrefix = () => (process.env.GOOGLE_SHEET_TAB ? `${encodeURIComponent(process.env.GOOGLE_SHEET_TAB)}!` : "");
+const base = () => `https://sheets.googleapis.com/v4/spreadsheets/${envValue("GOOGLE_SHEET_ID")}/values`;
+const tabPrefix = () => (envValue("GOOGLE_SHEET_TAB") ? `${encodeURIComponent(envValue("GOOGLE_SHEET_TAB"))}!` : "");
 
 async function sheets(path: string, token: string, init?: RequestInit) {
   const res = await fetch(`${base()}/${path}`, {

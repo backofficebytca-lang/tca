@@ -3,6 +3,8 @@
  * (https://resend.com/docs/api-reference/emails/send-email). Plain fetch, no SDK.
  * The visitor's address goes in Reply-To, so answering the email answers them.
  */
+import { envValue } from "@/lib/server/env";
+
 export type ContactData = {
   nom: string;
   fonction: string;
@@ -14,13 +16,13 @@ export type ContactData = {
   consentement: boolean;
 };
 
-export const emailConfigured = () => Boolean(process.env.RESEND_API_KEY && process.env.CONTACT_TO_EMAIL);
+export const emailConfigured = () => Boolean(envValue("RESEND_API_KEY") && envValue("CONTACT_TO_EMAIL"));
 
 const escapeHtml = (s: string) =>
   s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
 export async function sendNotification(data: ContactData) {
-  const from = process.env.CONTACT_FROM || "TCA Backoffice <onboarding@resend.dev>";
+  const from = envValue("CONTACT_FROM") || "TCA Backoffice <onboarding@resend.dev>";
   const rows: [string, string][] = [
     ["Nom, prénom", data.nom],
     ["Fonction", data.fonction || "—"],
@@ -41,12 +43,12 @@ export async function sendNotification(data: ContactData) {
   const res = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
-      Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+      Authorization: `Bearer ${envValue("RESEND_API_KEY")}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
       from,
-      to: [process.env.CONTACT_TO_EMAIL],
+      to: [envValue("CONTACT_TO_EMAIL")],
       reply_to: data.email,
       subject: `Nouvelle demande — ${data.objet}`,
       text,
