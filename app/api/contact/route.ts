@@ -1,12 +1,13 @@
 import { NextResponse } from "next/server";
 import { RENDEZ_VOUS_PAGE } from "@/lib/content/rendez-vous";
+import { emailConfigured, sendNotification } from "@/lib/server/notify";
+import { appendRow, sheetConfigured } from "@/lib/server/sheet";
 
 /**
- * Receives the written-contact form and forwards it to a Google Apps Script
- * web app, which appends a row to the Google Sheet and notifies the inbox
- * (see docs/google-sheet/README.md). The script URL and the shared secret stay
- * on the server (GOOGLE_SCRIPT_URL, GOOGLE_SCRIPT_SECRET) — the browser only
- * ever talks to this route.
+ * Receives the written-contact form. After validation it (1) emails the
+ * request to the team inbox through Resend and (2) appends a row to a Google
+ * Sheet (see docs/contact-form/README.md). All credentials are server-side
+ * environment variables — the browser only ever talks to this route.
  */
 export const dynamic = "force-dynamic";
 
@@ -60,31 +61,25 @@ export async function POST(request: Request) {
     data.consentement;
   if (!valid) return NextResponse.json({ ok: false, error: "invalid" }, { status: 400 });
 
-  const url = process.env.GOOGLE_SCRIPT_URL;
-  const secret = process.env.GOOGLE_SCRIPT_SECRET;
-  if (!url || !secret) {
-    console.error("[contact] GOOGLE_SCRIPT_URL / GOOGLE_SCRIPT_SECRET are not set");
+  // Two independent destinations: the notification email and the Google Sheet.
+  // A request counts as received if at least one of them succeeded, so a
+  // problem on one side never loses a visitor's message.
+  const jobs: { name: string; run: Promise<void> }[] = [];
+  if (emailConfigured()) jobs.push({ name: "email", run: sendNotification(data) });
+  if (sheetConfigured()) jobs.push({ name: "sheet", run: appendRow(data, "/rendez-vous") });
+
+  if (jobs.length === 0) {
+    console.error("[contact] neither Resend nor Google Sheets is configured");
     return NextResponse.json({ ok: false, error: "not_configured" }, { status: 503 });
   }
 
-  try {
-    // Apps Script answers a POST with a redirect to the result; fetch follows it.
-    const res = await fetch(url, {
-      method: "POST",
-      headers: { "Content-Type": "text/plain;charset=utf-8" },
-      body: JSON.stringify({ secret, ...data, page: "/rendez-vous" }),
-      redirect: "follow",
-      cache: "no-store",
-      signal: AbortSignal.timeout(15000),
-    });
-    const result = (await res.json().catch(() => null)) as { ok?: boolean } | null;
-    if (!res.ok || !result?.ok) {
-      console.error("[contact] Apps Script refused the request", res.status, result);
-      return NextResponse.json({ ok: false, error: "upstream" }, { status: 502 });
-    }
-    return NextResponse.json({ ok: true });
-  } catch (error) {
-    console.error("[contact] Apps Script unreachable", error);
+  const results = await Promise.allSettled(jobs.map((j) => j.run));
+  results.forEach((r, i) => {
+    if (r.status === "rejected") console.error(`[contact] ${jobs[i].name} failed:`, r.reason);
+  });
+
+  if (results.every((r) => r.status === "rejected")) {
     return NextResponse.json({ ok: false, error: "upstream" }, { status: 502 });
   }
+  return NextResponse.json({ ok: true });
 }

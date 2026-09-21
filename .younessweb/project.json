@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "name": "Tca",
+  "dir": "tca",
+  "github": {
+    "owner": "backofficebytca-lang",
+    "repo": "tca",
+    "account": "backofficebytca-lang"
+  },
+  "vercel": {
+    "project": "tca",
+    "projectId": "prj_F7JrKUyS0GnYuiQPZACC6rkNvgbu",
+    "orgId": "team_LKqRHUQDPrxw02IepJuhPF3e",
+    "scope": "tca11",
+    "profile": "tca"
+  },
+  "productionBranch": "main",
+  "productionDomain": null
+}
