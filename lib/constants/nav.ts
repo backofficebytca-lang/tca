@@ -13,7 +13,8 @@ export const MAIN_NAV: NavItem[] = [
 ];
 
 export const APPOINTMENT_CTA: NavItem = {
-  label: "Prendre rendez-vous",
+  // TCA-Recommandations.pdf §0: the repeated site-wide CTA.
+  label: "Réserver un échange",
   href: "/rendez-vous",
 };
 
@@ -42,7 +43,7 @@ export const FOOTER_COLUMNS: { title: string; links: NavItem[] }[] = [
   },
   {
     title: "Contact",
-    links: [{ label: "Prendre rendez-vous", href: "/rendez-vous" }],
+    links: [{ label: "Réserver un échange", href: "/rendez-vous" }],
   },
   {
     title: "Légal",

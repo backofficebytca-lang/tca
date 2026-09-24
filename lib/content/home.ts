@@ -13,7 +13,7 @@ export const HOME = {
       "Assistance administrative externalisée pour artisans, auto-entrepreneurs, TPE et PME.",
     subtitle:
       "Nous prenons en charge la facturation, les relances clients, la gestion des factures fournisseurs et la préparation comptable. Une référente dédiée, joignable directement. Sans embauche, sans changement d'outils, sans engagement.",
-    primaryCta: { label: "Prendre rendez-vous", href: "/rendez-vous" },
+    primaryCta: { label: "Réserver un échange", href: "/rendez-vous" },
     secondaryCta: { label: "Découvrir nos formules", href: "/formules" },
     counters: [
       { label: "Ligne directe", value: "8h–18h · lundi au vendredi" },
@@ -36,7 +36,7 @@ export const HOME = {
     "Traitement de la boîte mail",
   ],
   profiles: {
-    title: "Trois profils. Un même niveau d'attention.",
+    title: "Trois profils. Le même niveau d'attention.",
     lede: "Nous accompagnons trois catégories d'entreprises, dont nous connaissons les rythmes et les priorités administratives.",
     items: [
       {
@@ -110,7 +110,7 @@ export const HOME = {
   finalCta: {
     title: "Prenons rendez-vous.",
     lede: "Un premier échange de trente minutes suffit à cadrer votre besoin et à définir la formule adaptée.",
-    primaryCta: { label: "Prendre rendez-vous", href: "/rendez-vous" },
-    secondaryCta: { label: "Poser une question", href: "/rendez-vous#ecrire" },
+    primaryCta: { label: "Réserver un échange", href: "/rendez-vous" },
+    secondaryCta: { label: "Nous écrire", href: "/rendez-vous#ecrire" },
   },
 };

@@ -1,16 +1,15 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { SITE, PENDING } from "@/lib/constants/site";
+import { SITE } from "@/lib/constants/site";
 import { cn } from "@/lib/utils/cn";
 
 /**
  * A quick-contact panel that lists real contact routes only — no bubble icon,
  * no assistant wording, no online-status dot. Closed, it is a small glass
  * button that settles in after the page has painted; open, a short list of
- * routes. Only values that exist are shown as links: the email address is
- * real, the direct line is still a placeholder (shown as unavailable), and
- * there is no WhatsApp number anywhere in the project, so none is offered.
+ * routes: email, then WhatsApp (TCA-Recommandations.pdf §9 replaces the
+ * pending direct line with the WhatsApp number).
  */
 
 function EmailGlyph() {
@@ -22,15 +21,19 @@ function EmailGlyph() {
   );
 }
 
-function PhoneGlyph() {
+function WhatsAppGlyph() {
   return (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
       <path
-        d="M5 4.5h3.2l1.4 4.2-2 1.8a11.5 11.5 0 0 0 5.9 5.9l1.8-2 4.2 1.4v3.2a1.5 1.5 0 0 1-1.6 1.5C10.4 20 4 13.6 3.5 6.1A1.5 1.5 0 0 1 5 4.5Z"
+        d="M12 3.5a8.5 8.5 0 0 0-7.3 12.8L3.5 20.5l4.3-1.1A8.5 8.5 0 1 0 12 3.5Z"
         stroke="currentColor"
         strokeWidth="1.4"
         strokeLinecap="round"
         strokeLinejoin="round"
+      />
+      <path
+        d="M8.8 8.4c.2-.5.4-.5.7-.5h.4c.2 0 .4 0 .5.4.2.5.6 1.5.6 1.6.1.1.1.3 0 .4-.1.2-.1.3-.3.4-.1.2-.3.3-.4.5-.1.1-.3.3-.1.6.2.3.8 1.2 1.6 1.9 1.1 1 2 1.3 2.3 1.4.3.1.4.1.6-.1.2-.2.7-.8.9-1.1.2-.2.3-.2.6-.1.2.1 1.5.7 1.8.9.3.1.4.2.5.3.1.2.1.9-.2 1.4-.3.6-1.5 1.1-2 1.2-.6.1-1.1.1-2.5-.5-2.1-.9-3.5-2.9-3.6-3.1-.1-.1-.9-1.2-.9-2.3 0-1.1.6-1.6.8-1.9Z"
+        fill="currentColor"
       />
     </svg>
   );
@@ -63,8 +66,6 @@ export function SupportPanel() {
       document.removeEventListener("mousedown", onPointerDown);
     };
   }, [open]);
-
-  const hasPhone = !PENDING.phone.startsWith("[");
 
   const optionClass =
     "group/opt flex items-center gap-4 border-t border-ink/10 px-5 py-4 t-small text-ink transition-colors duration-300 hover:bg-mist";
@@ -106,7 +107,7 @@ export function SupportPanel() {
             <EmailGlyph />
           </span>
           <span className="flex min-w-0 flex-1 flex-col">
-            <span className="font-medium">Envoyer un email</span>
+            <span className="font-medium">Écrire à TCA</span>
             <span className="break-all">{SITE.contactEmail}</span>
           </span>
           <span aria-hidden className="transition-transform duration-300 group-hover/opt:translate-x-1">
@@ -114,27 +115,24 @@ export function SupportPanel() {
           </span>
         </a>
 
-        {hasPhone ? (
-          <a href={`tel:${PENDING.phone}`} className={optionClass} tabIndex={open ? 0 : -1}>
-            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-mist transition-colors duration-300 group-hover/opt:bg-paper">
-              <PhoneGlyph />
-            </span>
-            <span className="flex-1 font-medium">Nous appeler</span>
-            <span aria-hidden className="transition-transform duration-300 group-hover/opt:translate-x-1">
-              →
-            </span>
-          </a>
-        ) : (
-          <div className="flex items-center gap-4 border-t border-ink/10 px-5 py-4 t-small text-ink">
-            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-mist">
-              <PhoneGlyph />
-            </span>
-            <span className="flex flex-col">
-              <span className="font-medium">Nous appeler</span>
-              <span>Ligne directe à venir</span>
-            </span>
-          </div>
-        )}
+        <a
+          href={SITE.whatsappLink}
+          target="_blank"
+          rel="noreferrer"
+          className={optionClass}
+          tabIndex={open ? 0 : -1}
+        >
+          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-mist transition-colors duration-300 group-hover/opt:bg-paper">
+            <WhatsAppGlyph />
+          </span>
+          <span className="flex min-w-0 flex-1 flex-col">
+            <span className="font-medium">Discuter sur WhatsApp</span>
+            <span>{SITE.whatsappNumber}</span>
+          </span>
+          <span aria-hidden className="transition-transform duration-300 group-hover/opt:translate-x-1">
+            →
+          </span>
+        </a>
       </div>
 
       <button

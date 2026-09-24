@@ -3,8 +3,13 @@ export const SITE = {
   domain: "tca-backoffice.fr",
   url: "https://tca-backoffice.fr",
   positioningPhrase: "Le service d'assistance administrative externalisée",
+  // TCA-Recommandations.pdf §0 (footer, nouveau slogan).
+  footerSlogan: ["L'administratif, externalisé.", "Sans embauche, sans engagement."],
   legalPositioningShort: "assistance administrative externalisée",
   contactEmail: "contact@tca-backoffice.fr",
+  // TCA-Recommandations.pdf §9 — WhatsApp replaces the pending direct line.
+  whatsappNumber: "+33 7 80 75 58 57",
+  whatsappLink: "https://wa.me/33780755857",
   hours: "8h–18h",
   hoursDetail: "8h–18h · lundi au vendredi",
   hoursNote: "Heures ouvrées",

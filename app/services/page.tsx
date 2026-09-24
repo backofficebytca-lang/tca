@@ -9,6 +9,7 @@ import { ArrowUpRight } from "@/components/ui/ArrowLink";
 import { Reveal } from "@/components/motion/Reveal";
 import { StackedCards } from "@/components/sections/StackedCards";
 import { CtaBand } from "@/components/sections/CtaBand";
+import { BoldBrand } from "@/components/typography/BoldBrand";
 import { FORMULA_CARDS } from "@/lib/content/formules";
 import { SERVICES_PAGE } from "@/lib/content/services";
 import { IMAGES } from "@/lib/constants/images";
@@ -112,7 +113,7 @@ export default function ServicesPage() {
               <div className="mt-6">
                 {agency.paragraphs.map((paragraph) => (
                   <p key={paragraph} className="t-body text-gray [&:not(:first-child)]:mt-4">
-                    {paragraph}
+                    <BoldBrand text={paragraph} />
                   </p>
                 ))}
               </div>
@@ -129,15 +130,12 @@ export default function ServicesPage() {
                     <span className="sr-only">(nouvel onglet)</span>
                   </a>
                 ) : (
-                  <>
-                    <span
-                      aria-disabled="true"
-                      className={buttonClasses("outline", "cursor-not-allowed opacity-70")}
-                    >
-                      {agency.linkLabel}
-                    </span>
-                    <p className="t-small mt-3 text-gray">Lien à confirmer avant mise en ligne.</p>
-                  </>
+                  <span
+                    aria-disabled="true"
+                    className={buttonClasses("outline", "cursor-not-allowed opacity-70")}
+                  >
+                    {agency.linkLabel}
+                  </span>
                 )}
               </div>
             </div>

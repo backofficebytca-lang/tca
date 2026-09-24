@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { PageHero } from "@/components/sections/PageHero";
 import { Section } from "@/components/layout/Section";
 import { Eyebrow } from "@/components/typography/Eyebrow";
 import { CheckIcon } from "@/components/ui/CheckIcon";
-import { PointsList } from "@/components/sections/PointsList";
 import { BookingPanel } from "@/components/sections/BookingPanel";
 import { ContactForm } from "@/components/forms/ContactForm";
 import { Reveal } from "@/components/motion/Reveal";
@@ -19,15 +17,22 @@ export const metadata: Metadata = {
 };
 
 export default function RendezVousPage() {
-  const { hero, cadrage, preparer, after, writeInstead } = RENDEZ_VOUS_PAGE;
+  const { booking, preparer, after, writeInstead } = RENDEZ_VOUS_PAGE;
 
   return (
     <>
-      <PageHero eyebrow={hero.eyebrow} title={hero.title} lede={hero.lede} />
+      {/* TCA-Recommandations.pdf + client note: the page opens directly on
+          the booking agenda — no hero banner, no separate 30-minute pitch.
+          The visible title lives in <BookingPanel>'s h2; this sr-only h1
+          keeps the page to one accessible top-level heading. */}
+      <h1 className="sr-only">{booking.title}</h1>
+      <Section pad="none" size="display" className="pb-16 pt-8 md:pb-24 md:pt-14">
+        <BookingPanel />
+      </Section>
 
-      {/* The written route sits directly under the intro: a visitor who would
-          rather write never has to scroll for the form. */}
-      <Section id="ecrire" pad="none" size="display" className="pb-16 pt-2 md:pb-24">
+      {/* The written route: a visitor who would rather write than book a
+          slot never has to scroll far for the form. */}
+      <Section id="ecrire" pad="none" size="display" className="pb-16 md:pb-24">
         <div className="grid gap-4 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <Eyebrow>{writeInstead.eyebrow}</Eyebrow>
@@ -52,20 +57,6 @@ export default function RendezVousPage() {
             </div>
           </div>
         </div>
-      </Section>
-
-      <Section pad="none" size="display" className="pb-16 md:pb-24">
-        <Eyebrow>{cadrage.eyebrow}</Eyebrow>
-        <Reveal>
-          <h2 className="t-h1 mt-5 max-w-3xl">{cadrage.title}</h2>
-        </Reveal>
-        <div className="mt-10 md:mt-14">
-          <PointsList points={cadrage.points} />
-        </div>
-      </Section>
-
-      <Section pad="none" size="display" className="pb-16 md:pb-24">
-        <BookingPanel />
       </Section>
 
       <Section pad="none" size="display" className="pb-20 md:pb-32">

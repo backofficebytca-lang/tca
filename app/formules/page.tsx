@@ -4,8 +4,8 @@ import { PageHero } from "@/components/sections/PageHero";
 import { Section } from "@/components/layout/Section";
 import { Eyebrow } from "@/components/typography/Eyebrow";
 import { Reveal } from "@/components/motion/Reveal";
+import { SentenceLines } from "@/components/typography/SentenceLines";
 import { FormulaCard } from "@/components/formulas/FormulaCard";
-import { FormulaSheet } from "@/components/formulas/FormulaSheet";
 import { ComparisonTable } from "@/components/formulas/ComparisonTable";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { FORMULA_CARDS, FORMULES_PAGE } from "@/lib/content/formules";
@@ -19,28 +19,37 @@ export const metadata: Metadata = {
 };
 
 export default function FormulesPage() {
-  const { hero, sheets, comparison, switching } = FORMULES_PAGE;
+  const { hero, comparison, switching } = FORMULES_PAGE;
 
   return (
     <>
       <PageHero eyebrow={hero.eyebrow} title={hero.title} lede={hero.lede} image={IMAGES.deskMug} />
 
+      {/* TCA-Recommandations.pdf §3's detailed sheets stay removed (a doublon
+          of the comparison table below), but the client asked for the price
+          cards back, under the intro, in the same design as the home page. */}
+      <Section pad="tight" size="display" className="pb-0">
+        <div className="relative">
+          <span id="pilotage" aria-hidden className="absolute left-0 top-0 h-px w-px scroll-mt-24" />
+        </div>
+        <Eyebrow>{comparison.intro.eyebrow}</Eyebrow>
+        <Reveal>
+          <h2 className="t-h1 mt-5 max-w-2xl">
+            <SentenceLines text={comparison.intro.title} />
+          </h2>
+        </Reveal>
+        <p className="t-lead mt-5 max-w-2xl text-gray">{comparison.intro.lede}</p>
+      </Section>
+
       <Section pad="tight" size="display">
         <h2 className="sr-only">{hero.eyebrow}</h2>
         <div className="grid gap-4 lg:grid-cols-3">
           {FORMULA_CARDS.map((card, i) => (
-            <Reveal key={card.id} delay={i * 100} className="h-full">
-              <FormulaCard card={card} image={FORMULA_PHOTOS[i]} moreHref={`#${card.id}`} />
-            </Reveal>
-          ))}
-        </div>
-      </Section>
-
-      <Section pad="tight" size="display">
-        <h2 className="sr-only">{sheets.title}</h2>
-        <div className="flex flex-col gap-4">
-          {sheets.items.map((sheet) => (
-            <FormulaSheet key={sheet.id} sheet={sheet} />
+            <div key={card.id} id={card.id} className="scroll-mt-24">
+              <Reveal delay={i * 100} className="h-full">
+                <FormulaCard card={card} image={FORMULA_PHOTOS[i]} moreHref={`#${card.id}`} />
+              </Reveal>
+            </div>
           ))}
         </div>
       </Section>
@@ -62,7 +71,9 @@ export default function FormulesPage() {
           <div className="grid rounded-[18px] bg-mist p-3 lg:grid-cols-12 lg:items-stretch lg:gap-3">
             <div className="flex flex-col justify-center px-4 py-8 md:px-10 md:py-12 lg:col-span-6 lg:px-14">
               <Eyebrow on="card">{switching.eyebrow}</Eyebrow>
-              <h2 className="t-h1 mt-5">{switching.title}</h2>
+              <h2 className="t-h1 mt-5">
+                <SentenceLines text={switching.title} />
+              </h2>
               <p className="t-lead mt-5 max-w-xl text-gray">{switching.lede}</p>
             </div>
             <div className="zoom relative aspect-[4/3] overflow-hidden rounded-xl lg:col-span-6 lg:aspect-auto lg:min-h-[420px]">

@@ -50,13 +50,13 @@ export const RENDEZ_VOUS_PAGE = {
   },
   preparer: {
     title: "Rien à préparer, ou presque.",
-    lede: "Le rendez-vous est conçu pour être efficace sans travail préparatoire de votre part. Trois informations facilitent néanmoins le chiffrage si vous les avez sous la main :",
+    lede: "Aucune préparation n'est nécessaire. Trois informations facilitent le chiffrage si vous les avez sous la main :",
     items: [
       "Le nombre de factures et de devis que vous émettez en moyenne par mois.",
       "Le temps que vous ou vos équipes consacrez à l'administratif chaque semaine.",
       "Votre tarif journalier facturé (ou une valorisation interne de votre temps).",
     ],
-    closing: "Si vous ne les avez pas, nous les estimerons ensemble pendant l'échange.",
+    closing: "Sinon, nous les estimerons ensemble pendant l'échange.",
   },
   after: {
     title: "Ce que vous recevez sous 48 heures.",

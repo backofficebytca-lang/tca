@@ -1,54 +1,34 @@
 import Image from "next/image";
 import { Container } from "@/components/layout/Container";
 import { Eyebrow } from "@/components/typography/Eyebrow";
+import { SentenceLines } from "@/components/typography/SentenceLines";
 import { Reveal } from "@/components/motion/Reveal";
-import { ScaleOnScroll } from "@/components/motion/ScaleOnScroll";
 import { HOME } from "@/lib/content/home";
 import { IMAGES } from "@/lib/constants/images";
 
 const PHOTOS = [IMAGES.deskMug, IMAGES.deskSunlit, IMAGES.glassCorridor];
 
 /**
- * Centered introduction, a large photograph that grows as it scrolls into
- * view, the four counters, then the three profiles as soft grey cards with a
- * photograph each — the reference's "We connect the dots" → stats → cards flow.
+ * Centered introduction, then the three profiles as soft grey cards with a
+ * photograph each. TCA-Recommandations.pdf §1: the large scaling photograph
+ * and the counters bar above this are removed.
  */
 export function ProfilesSection() {
-  const { profiles, hero } = HOME;
+  const { profiles } = HOME;
 
   return (
     <section className="section-y">
       <Container size="display" className="flex flex-col gap-14 md:gap-20">
         <div className="mx-auto flex max-w-3xl flex-col items-center gap-5 text-center">
           <Reveal>
-            <h2 className="t-h1">{profiles.title}</h2>
+            <h2 className="t-h1">
+              <SentenceLines text={profiles.title} />
+            </h2>
           </Reveal>
           <Reveal delay={100}>
             <p className="t-lead max-w-xl text-gray">{profiles.lede}</p>
           </Reveal>
         </div>
-
-        <ScaleOnScroll>
-          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl bg-mist sm:aspect-[16/9]">
-            <Image
-              src={IMAGES.parisStreet.src}
-              alt={IMAGES.parisStreet.alt}
-              fill
-              sizes="(min-width: 1520px) 1440px, 100vw"
-              className="object-cover"
-              style={{ objectPosition: "50% 60%" }}
-            />
-          </div>
-        </ScaleOnScroll>
-
-        <dl className="grid grid-cols-2 gap-x-6 gap-y-10 lg:grid-cols-4">
-          {hero.counters.map((counter, i) => (
-            <Reveal key={counter.label} delay={i * 80} className="flex flex-col-reverse gap-3 md:pr-6">
-              <dt className="t-small max-w-[16rem] text-gray">{counter.label}</dt>
-              <dd className="t-stat">{counter.value}</dd>
-            </Reveal>
-          ))}
-        </dl>
 
         <ul className="grid gap-4 md:grid-cols-3">
           {profiles.items.map((item, i) => (

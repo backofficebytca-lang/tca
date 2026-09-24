@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Container } from "@/components/layout/Container";
 import { Eyebrow } from "@/components/typography/Eyebrow";
-import { NoBreak } from "@/components/typography/NoBreak";
+import { SentenceLines } from "@/components/typography/SentenceLines";
 import { ScaleOnScroll } from "@/components/motion/ScaleOnScroll";
 
 type Photo = { src: string; alt: string; position?: string };
@@ -30,7 +30,7 @@ export function PageHero({
         <Eyebrow className="fade-up">{eyebrow}</Eyebrow>
         <div className="mt-5 grid gap-6 lg:grid-cols-12 lg:items-end lg:gap-x-16">
           <h1 className="t-display fade-up lg:col-span-8" style={{ ["--d" as string]: "100ms" }}>
-            <NoBreak>{title}</NoBreak>
+            <SentenceLines text={title} />
           </h1>
           {lede && (
             <p className="t-lead fade-up text-gray lg:col-span-4" style={{ ["--d" as string]: "250ms" }}>

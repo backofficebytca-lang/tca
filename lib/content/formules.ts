@@ -155,6 +155,14 @@ export const FORMULES_PAGE = {
   comparison: {
     // Section label from the PDF (§3.3); shown to assistive technology only.
     title: "Tableau comparatif",
+    // TCA-Recommandations.pdf §3: visible title placed above the table, once
+    // the three pricing cards (duplicated from the home page) were removed
+    // from this page. Alternative title from the same document.
+    intro: {
+      eyebrow: "Nos formules",
+      title: "Une formule pour chaque volume.",
+      lede: "Choisissez selon votre volume. Changez de formule à tout moment, sans engagement.",
+    },
     included:
       "Toutes les formules incluent : référente dédiée, ligne directe 8h–18h, communication proactive par mail, protocole de suivi des règlements, classement documentaire, traitement de la boîte mail.",
     columns: ["Starter", "Essentiel", "Sur-mesure"],

@@ -12,8 +12,8 @@ const noopSubscribe = () => () => {};
 
 /**
  * Below 1024px the header shows a three-line hamburger (44px touch target).
- * It opens a full-screen white panel with the links at heading size and the
- * appointment CTA. Portaled to <body> so it escapes the header's blur
+ * It opens a full-screen white panel with the links at a compact, readable
+ * size and the appointment CTA. Portaled to <body> so it escapes the header's blur
  * stacking context; Escape closes it and page scroll is locked while open.
  */
 export function MobileNav() {
@@ -84,7 +84,11 @@ export function MobileNav() {
                 )}
                 style={{ transitionDelay: open ? `${120 + i * 60}ms` : "0ms" }}
               >
-                <Link href={item.href} tabIndex={open ? 0 : -1} className="t-display block py-2 text-ink">
+                <Link
+                  href={item.href}
+                  tabIndex={open ? 0 : -1}
+                  className="block py-1.5 text-[1.625rem] font-semibold tracking-[-0.03em] text-ink"
+                >
                   {item.label}
                 </Link>
               </li>

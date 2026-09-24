@@ -34,10 +34,11 @@
    body 16px, lead 18–20px in grey, labels 12px.
    ───────────────────────────────────────────────────────────────────────── */
 @utility t-hero {
-  font-size: clamp(2.5rem, 1.3rem + 4.4vw, 4.5rem);
+  /* TCA-Recommandations.pdf §1: title and paragraph reduced ~15%. */
+  font-size: clamp(2.125rem, 1.1rem + 3.7vw, 3.8rem);
   font-weight: 600;
   letter-spacing: -0.04em;
-  line-height: 1.06;
+  line-height: 1.08;
 }
 
 @utility t-display {
@@ -70,7 +71,8 @@
 }
 
 @utility t-lead {
-  font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
+  /* Base size nudged down slightly so long sentences wrap less on phones. */
+  font-size: clamp(1rem, 0.95rem + 0.3vw, 1.25rem);
   font-weight: 400;
   letter-spacing: -0.005em;
   line-height: 1.45;
