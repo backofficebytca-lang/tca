@@ -17,18 +17,18 @@ export function StackedCards({ items, top = 96, step = 18 }: { items: Item[]; to
     <ol className="flex flex-col gap-5">
       {items.map((item, i) => (
         <li key={item.n} className="md:sticky" style={{ top: top + i * step }}>
-          <article className="grid rounded-[18px] bg-mist p-3 md:min-h-[440px] md:grid-cols-[minmax(0,42%)_1fr] md:gap-3">
+          <article className="grid rounded-[18px] bg-mist p-3 md:min-h-[340px] md:grid-cols-[minmax(0,34%)_1fr] md:gap-3">
             <div className="zoom relative aspect-[4/3] overflow-hidden rounded-xl md:aspect-auto">
               <Image
                 src={item.image.src}
                 alt={item.image.alt}
                 fill
-                sizes="(min-width: 768px) 42vw, 100vw"
+                sizes="(min-width: 768px) 34vw, 100vw"
                 className="object-cover"
                 style={{ objectPosition: item.image.position }}
               />
             </div>
-            <div className="flex flex-col justify-center gap-5 px-4 py-8 md:px-10 md:py-10 lg:px-16">
+            <div className="flex flex-col justify-center gap-5 px-4 py-7 md:px-8 md:py-8 lg:px-12">
               <Eyebrow on="card">{item.n}</Eyebrow>
               <h3 className="t-h2 max-w-xl">
                 <span className="sr-only">{item.n}. </span>

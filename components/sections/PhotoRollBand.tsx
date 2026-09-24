@@ -7,7 +7,7 @@ import { MarqueeBand } from "@/components/sections/MarqueeBand";
  */
 export function PhotoRollBand() {
   return (
-    <section className="pt-10 md:pt-14">
+    <section>
       <MarqueeBand />
     </section>
   );

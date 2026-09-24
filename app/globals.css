@@ -30,62 +30,62 @@
 
 /* ─────────────────────────────────────────────────────────────────────────
    Typography — moderate scale, tight tracking, as in the reference:
-   H1 ≈ 47–64px / 500–600, H2 ≈ 30–40px / 500, H3 ≈ 22–30px / 500,
-   body 16px, lead 18–20px in grey, labels 12px.
+   H1 ≈ 40–52px / 500–600, H2 ≈ 26–36px / 500, H3 ≈ 19–26px / 500,
+   body ≈ 15px, lead ≈ 15–18px in grey, labels 12px.
+   Client note (2026-09-24): headings and body text still read as too large
+   — this is a second, deeper pass down from the first PDF-driven cut.
    ───────────────────────────────────────────────────────────────────────── */
 @utility t-hero {
-  /* TCA-Recommandations.pdf §1: title and paragraph reduced ~15%. */
-  font-size: clamp(2.125rem, 1.1rem + 3.7vw, 3.8rem);
+  font-size: clamp(1.875rem, 1rem + 3.2vw, 3.25rem);
   font-weight: 600;
   letter-spacing: -0.04em;
-  line-height: 1.08;
+  line-height: 1.1;
 }
 
 @utility t-display {
   /* Inner-page H1. */
-  font-size: clamp(2.25rem, 1.3rem + 3.4vw, 3.9rem);
+  font-size: clamp(2rem, 1.2rem + 3vw, 3.35rem);
   font-weight: 600;
   letter-spacing: -0.04em;
-  line-height: 1.08;
+  line-height: 1.1;
 }
 
 @utility t-h1 {
-  font-size: clamp(2rem, 1.3rem + 2.5vw, 3.1rem);
+  font-size: clamp(1.75rem, 1.2rem + 2.2vw, 2.75rem);
   font-weight: 500;
   letter-spacing: -0.04em;
-  line-height: 1.1;
+  line-height: 1.12;
 }
 
 @utility t-h2 {
-  font-size: clamp(1.75rem, 1.25rem + 1.5vw, 2.5rem);
+  font-size: clamp(1.625rem, 1.2rem + 1.3vw, 2.25rem);
   font-weight: 500;
   letter-spacing: -0.04em;
-  line-height: 1.1;
+  line-height: 1.15;
 }
 
 @utility t-h3 {
-  font-size: clamp(1.3rem, 1.15rem + 0.55vw, 1.75rem);
+  font-size: clamp(1.2rem, 1.1rem + 0.5vw, 1.625rem);
   font-weight: 500;
   letter-spacing: -0.025em;
-  line-height: 1.2;
+  line-height: 1.22;
 }
 
 @utility t-lead {
-  /* Base size nudged down slightly so long sentences wrap less on phones. */
-  font-size: clamp(1rem, 0.95rem + 0.3vw, 1.25rem);
+  font-size: clamp(0.9375rem, 0.9rem + 0.25vw, 1.125rem);
   font-weight: 400;
   letter-spacing: -0.005em;
   line-height: 1.45;
 }
 
 @utility t-body {
-  font-size: 1rem;
+  font-size: 0.9375rem;
   font-weight: 400;
   line-height: 1.55;
 }
 
 @utility t-small {
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   font-weight: 400;
   line-height: 1.5;
 }
@@ -99,7 +99,7 @@
 }
 
 @utility t-price {
-  font-size: clamp(2.5rem, 1.9rem + 2.4vw, 3.75rem);
+  font-size: clamp(2.25rem, 1.75rem + 2vw, 3.25rem);
   font-weight: 500;
   letter-spacing: -0.04em;
   line-height: 1;
@@ -107,7 +107,7 @@
 }
 
 @utility t-stat {
-  font-size: clamp(1.5rem, 1.1rem + 1.6vw, 2.25rem);
+  font-size: clamp(1.375rem, 1.05rem + 1.3vw, 2rem);
   font-weight: 500;
   letter-spacing: -0.035em;
   line-height: 1.1;
@@ -122,7 +122,9 @@
 
 /* Vertical rhythm between major sections. */
 @utility section-y {
-  padding-block: clamp(4.5rem, 3rem + 5vw, 8rem);
+  /* Client note (2026-09-24): the gaps between sections read as too big —
+     trimmed from clamp(4.5rem, 3rem + 5vw, 8rem). */
+  padding-block: clamp(3.5rem, 2.25rem + 4vw, 6rem);
 }
 
 /* ── Motion ───────────────────────────────────────────────────────────────

@@ -10,7 +10,7 @@ export function MarqueeBand() {
   const terms = HOME.marquee;
 
   return (
-    <div className="mask-x pb-2 pt-10 md:pt-14">
+    <div className="mask-x pb-2 pt-4 md:pt-6">
       <Marquee duration={70} className="text-gray">
         {(copy) => (
           <ul className="flex shrink-0 items-center" aria-hidden={copy === 1 || undefined}>

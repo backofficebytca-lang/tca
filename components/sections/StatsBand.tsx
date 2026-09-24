@@ -12,7 +12,7 @@ export function StatsBand() {
   const { counters } = HOME.hero;
 
   return (
-    <section className="pb-4 pt-2 md:pb-8">
+    <section className="pb-2 pt-2 md:pb-6">
       <Container size="display">
         <Reveal>
           <dl className="grid grid-cols-2 divide-x divide-y divide-ink/10 overflow-hidden rounded-[18px] bg-mist md:grid-cols-4 md:divide-y-0">

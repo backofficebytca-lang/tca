@@ -3,22 +3,22 @@ import { Reveal } from "@/components/motion/Reveal";
 
 /**
  * One "market versus us" contrast as a soft grey card: index pill and the
- * statement on the left; on the right the market's position, ours (a black
- * chip, so the answer is the strongest thing on the card) and the
- * consequence underneath.
+ * statement on the left; on the right the market's position and ours (a
+ * black chip, so the answer is the strongest thing on the card). The
+ * "Conséquence" line is hidden per client request but stays in the content
+ * data in case it returns.
  */
 export function OppositionRow({
   n,
   title,
   market,
   us,
-  consequence,
 }: {
   n: string;
   title: string;
   market: string;
   us: string;
-  consequence: string;
+  consequence?: string;
 }) {
   return (
     <li>
@@ -40,7 +40,6 @@ export function OppositionRow({
               <p className="t-small text-paper/70">Nous</p>
               <p className="t-body mt-2">{us}</p>
             </div>
-            <p className="t-small px-1 pt-2 font-medium sm:col-span-2">Conséquence : {consequence}</p>
           </div>
         </article>
       </Reveal>

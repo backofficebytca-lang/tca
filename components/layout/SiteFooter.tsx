@@ -5,7 +5,7 @@ import { ArrowLink } from "@/components/ui/ArrowLink";
 import { SentenceLines } from "@/components/typography/SentenceLines";
 import { BoldBrand } from "@/components/typography/BoldBrand";
 import { FOOTER_COLUMNS, APPOINTMENT_CTA } from "@/lib/constants/nav";
-import { PENDING, SITE } from "@/lib/constants/site";
+import { SITE } from "@/lib/constants/site";
 
 /**
  * TCA-Recommandations.pdf §0: black background, white text, the dot-matrix
@@ -59,7 +59,16 @@ export function SiteFooter() {
                       {SITE.contactEmail}
                     </a>
                   </li>
-                  <li>{PENDING.phone}</li>
+                  <li>
+                    <a
+                      href={SITE.whatsappLink}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-paper underline-offset-4 hover:underline"
+                    >
+                      {SITE.whatsappNumber}
+                    </a>
+                  </li>
                   <li>Horaires {SITE.hoursDetail}</li>
                 </ul>
               )}

@@ -54,7 +54,7 @@ export function FormulaCard({
 
       <div className="flex flex-1 flex-col px-3 pb-3 pt-6 md:px-5">
         <p className={featured ? "t-small text-paper/60" : "t-small text-gray"}>{card.label}</p>
-        <h3 className="t-h2 mt-1">{card.name}</h3>
+        <h3 className={featured ? "t-h2 mt-1 text-paper" : "t-h2 mt-1"}>{card.name}</h3>
 
         <div className="mt-6 flex flex-wrap items-end gap-x-2">
           <span className="t-price">{card.price}</span>

@@ -56,12 +56,12 @@ export function Hero() {
           <h1 className="max-w-[46rem] text-paper">
             <span className="t-hero block">
               {hero.statement.map((line, i) => (
-                <span key={line}>
+                <span key={line} className="block">
                   <span className="inline-block overflow-hidden align-top pb-[0.12em] -mb-[0.12em]">
                     <span className="rise inline-block" style={{ ["--d" as string]: `${120 + i * 140}ms` }}>
                       {line}
                     </span>
-                  </span>{" "}
+                  </span>
                 </span>
               ))}
             </span>
