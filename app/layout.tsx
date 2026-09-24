@@ -31,6 +31,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
+  // Google Search Console (search.google.com/search-console) domain ownership.
+  verification: {
+    google: "R2Nw77knqkUiqMQfBZqDDYzDk7DDBRNqSqy0YUB4z2s",
+  },
 };
 
 const professionalServiceJsonLd = {

@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Container } from "@/components/layout/Container";
 import { ArrowLink } from "@/components/ui/ArrowLink";
+import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 import { SentenceLines } from "@/components/typography/SentenceLines";
 import { BoldBrand } from "@/components/typography/BoldBrand";
 import { FOOTER_COLUMNS, APPOINTMENT_CTA } from "@/lib/constants/nav";
@@ -64,8 +65,9 @@ export function SiteFooter() {
                       href={SITE.whatsappLink}
                       target="_blank"
                       rel="noreferrer"
-                      className="text-paper underline-offset-4 hover:underline"
+                      className="inline-flex items-center gap-2 text-paper underline-offset-4 hover:underline"
                     >
+                      <WhatsAppIcon className="shrink-0" />
                       {SITE.whatsappNumber}
                     </a>
                   </li>
