@@ -47,7 +47,7 @@ export function EngagementsTeaser() {
               <li key={item.title}>
                 <Reveal delay={(i % 3) * 90} className="h-full">
                   <article className="flex h-full flex-col gap-4 rounded-xl bg-mist p-6 md:p-7">
-                    <span className="flex h-11 w-11 items-center justify-center rounded-full bg-paper text-ink">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-full bg-paper text-ink">
                       <Icon />
                     </span>
                     <div className="flex items-baseline justify-between gap-4">

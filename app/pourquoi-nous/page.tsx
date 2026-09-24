@@ -93,7 +93,7 @@ export default function PourquoiNousPage() {
               <li key={item.title}>
                 <Reveal delay={i * 90} className="h-full">
                   <article className="h-full rounded-xl bg-mist p-6 md:p-7">
-                    <span className="flex h-11 w-11 items-center justify-center rounded-full bg-paper text-ink">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-full bg-paper text-ink">
                       <Icon />
                     </span>
                     <h3 className="t-h3 mt-5">{item.title}</h3>

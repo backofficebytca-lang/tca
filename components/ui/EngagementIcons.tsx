@@ -2,10 +2,11 @@ import type { SVGProps } from "react";
 
 /**
  * Small line icons for the two "engagements" grids (home and Pourquoi nous),
- * one per commitment. 24px, 1.6 stroke, rounded caps — matching the glyphs
- * already used in the support widget.
+ * one per commitment. 20px, 1.6 stroke, rounded caps — matching the glyphs
+ * already used in the support widget (client note 2026-09-24: sized down a
+ * little from 24px).
  */
-const base = { viewBox: "0 0 24 24", width: 24, height: 24, fill: "none", "aria-hidden": true } as const;
+const base = { viewBox: "0 0 24 24", width: 20, height: 20, fill: "none", "aria-hidden": true } as const;
 const stroke = { stroke: "currentColor", strokeWidth: 1.6, strokeLinecap: "round", strokeLinejoin: "round" } as const;
 
 export function PersonIcon(props: SVGProps<SVGSVGElement>) {
