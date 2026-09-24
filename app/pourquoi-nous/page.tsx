@@ -15,9 +15,9 @@ import { IMAGES } from "@/lib/constants/images";
 const ENGAGEMENT_ICONS = [LockIcon, ShieldIcon, DoubleArrowIcon, ExportArrowIcon];
 
 export const metadata: Metadata = {
-  title: "Pourquoi choisir TCA Backoffice — sept engagements et qui nous sommes | TCA Backoffice",
+  title: "Pourquoi choisir TCA Backoffice — cinq engagements et qui nous sommes | TCA Backoffice",
   description:
-    "Référente dédiée, ligne directe, tarif fixe, sans engagement long. Sept différences concrètes plus la présentation de l'équipe et de l'expérience.",
+    "Référente dédiée, ligne directe, tarif fixe, sans engagement long. Cinq différences concrètes plus la présentation de l'équipe et de l'expérience.",
   alternates: { canonical: "/pourquoi-nous" },
 };
 

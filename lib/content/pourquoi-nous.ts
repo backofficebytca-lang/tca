@@ -4,15 +4,18 @@
  * later rule forbids (PDF §3 and §8, and the docx's own editorial bans):
  * two of its seven contrasts (the ones whose title or body is a banned
  * phrase), the trial period, the seniority heading, the provider's
- * biography, the skills list and the sectors section. The docx wording of the
- * title ("Sept raisons. Sept engagements.") and the source numbering of the
- * contrasts are kept as written; the resulting mismatch is reported to the
- * client team rather than resolved here.
+ * biography, the skills list and the sectors section.
+ *
+ * 2026-09-24: the docx's "Sept raisons. Sept engagements." title and its
+ * 01/02/03/05/07 numbering (kept as written from the source, with the
+ * gaps where the two dropped contrasts used to sit) were flagged as a
+ * mismatch and reported rather than fixed. The client has now confirmed:
+ * retitle to "Cinq" and renumber the five remaining cards 01–05.
  */
 export const POURQUOI_NOUS_PAGE = {
   hero: {
     eyebrow: "Pourquoi nous",
-    title: "Sept raisons. Sept engagements. Aucune promesse floue.",
+    title: "Cinq raisons. Cinq engagements. Aucune promesse floue.",
     lede: "Le marché de l'assistanat externalisé est saturé de plateformes. Notre choix est inverse : une personne humaine dédiée, une ligne directe, un engagement de service écrit.",
   },
   oppositionsHeading: "Ce qui nous distingue",
@@ -39,14 +42,14 @@ export const POURQUOI_NOUS_PAGE = {
       consequence: "Votre budget administratif est stable et prévisible.",
     },
     {
-      n: "05",
+      n: "04",
       title: "Continuité, pas fragilité",
       market: "Un freelance isolé tombe malade. Vous êtes seul avec vos factures.",
       us: "Une équipe structurée, un binôme de suppléance formé sur votre dossier.",
       consequence: "Votre back-office ne s'arrête jamais.",
     },
     {
-      n: "07",
+      n: "05",
       title: "Engagement court, pas enfermement",
       market: "Engagements annuels, préavis longs, pénalités de sortie.",
       us: "Abonnement mensuel. Résiliation à tout moment, sans pénalité.",
