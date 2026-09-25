@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 /** One photograph per à-la-carte service, in the order of the list. */
 const SERVICE_PHOTOS = [
   IMAGES.serviceMiseEnPage,
-  IMAGES.deskSunlit,
+  IMAGES.servicePresentationSociete,
   IMAGES.serviceRefonteModeles,
   IMAGES.serviceRedactionCourriers,
   IMAGES.serviceTraitementArchives,
@@ -136,8 +136,8 @@ export default function ServicesPage() {
             </div>
             <div className="zoom relative min-h-[300px] overflow-hidden rounded-xl lg:col-span-5">
               <Image
-                src={IMAGES.parisGolden.src}
-                alt={IMAGES.parisGolden.alt}
+                src={IMAGES.servicesAgency.src}
+                alt={IMAGES.servicesAgency.alt}
                 fill
                 sizes="(min-width: 1024px) 40vw, 100vw"
                 className="object-cover"

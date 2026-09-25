@@ -91,13 +91,13 @@ export const HOME = {
       { keyword: "Zéro.", title: "Aucune embauche", text: "Nous travaillons sur vos outils." },
       {
         keyword: "Écrite.",
-        title: "Confidentialité contractuelle",
+        title: "Confidentialité",
         text: "Clause de non-divulgation systématique.",
       },
       { keyword: "Libre.", title: "Sans engagement", text: "Mensuel, résiliable à tout moment." },
       {
         keyword: "Ouverte.",
-        title: "Communication proactive",
+        title: "Communication",
         text: "Un dossier avance ? Vous le savez par mail.",
       },
     ],

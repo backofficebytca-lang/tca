@@ -170,6 +170,13 @@ export const IMAGES = {
     "Deux collègues consultant des documents devant un ordinateur portable",
     "50% 35%"
   ),
+  servicePresentationSociete: p(
+    "service-presentation-societe",
+    2400,
+    1340,
+    "Ordinateur portable affichant un graphique, à côté de maquettes de présentation",
+    "50% 40%"
+  ),
   // Second batch of client-supplied photos, added 2026-09-25.
   relanceMiseEnDemeure: p(
     "relance-mise-en-demeure",
@@ -192,10 +199,9 @@ export const IMAGES = {
   ),
   faqHero: p(
     "faq-hero",
-    1536,
-    2048,
-    "Personne prenant des notes pendant un appel en visioconférence",
-    "50% 25%"
+    2400,
+    1600,
+    "Personne prenant des notes pendant un appel en visioconférence"
   ),
   quiNousSommes: p(
     "qui-nous-sommes",
@@ -212,10 +218,21 @@ export const IMAGES = {
   ),
   rendezVousFormulaire: p(
     "rendez-vous-formulaire",
-    1392,
     2048,
-    "Mains tapant sur un ordinateur portable, téléphone posé à côté",
-    "60% 30%"
+    1536,
+    "Mains tapant sur un ordinateur portable, téléphone posé à côté"
+  ),
+  homeHero: p(
+    "home-hero",
+    1600,
+    912,
+    "Deux collègues consultant un tableau de bord sur un écran d'ordinateur"
+  ),
+  servicesAgency: p(
+    "services-agency",
+    1280,
+    960,
+    "Page d'accueil d'un site d'agence créative affichée sur un ordinateur"
   ),
 } as const;
 

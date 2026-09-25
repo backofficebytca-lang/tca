@@ -24,7 +24,7 @@ function ArrowRight({ className }: { className?: string }) {
  */
 export function Hero() {
   const { hero } = HOME;
-  const image = IMAGES.glassCorridor;
+  const image = IMAGES.homeHero;
 
   const cta = (variant: "light" | "solid", className?: string) => (
     <Link
