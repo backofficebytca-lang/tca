@@ -38,15 +38,7 @@ export const RENDEZ_VOUS_PAGE = {
   booking: {
     eyebrow: "Agenda",
     title: "Choisissez un créneau sur les trois prochaines semaines.",
-    points: [
-      "Créneaux affichés sur les 21 jours à venir",
-      "Durée sélectionnable : 30 minutes (par défaut), 45 minutes, 60 minutes",
-      "Confirmation automatique par email",
-      "Rappel automatique 24 h avant le rendez-vous",
-    ],
-    confirmationTitle: "Merci. Votre rendez-vous est confirmé.",
-    confirmationText:
-      "Vous recevez dans les prochaines minutes un email récapitulatif avec le lien de visioconférence. Un rappel automatique vous sera envoyé 24 heures avant le créneau. Vous pouvez reporter ou annuler à tout moment depuis cet email.",
+    note: "Choisissez un créneau de 30 minutes. Le lien de visioconférence Google Meet vous est envoyé automatiquement par e-mail.",
   },
   preparer: {
     title: "Rien à préparer, ou presque.",

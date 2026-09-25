@@ -1,8 +1,12 @@
 import { Eyebrow } from "@/components/typography/Eyebrow";
-import { CheckIcon } from "@/components/ui/CheckIcon";
 import { Reveal } from "@/components/motion/Reveal";
-import { NoBreak } from "@/components/typography/NoBreak";
 import { RENDEZ_VOUS_PAGE } from "@/lib/content/rendez-vous";
+
+// Google Calendar Appointment Scheduling — public booking page for the
+// connected calendar. Creates the event, attaches a Google Meet link and
+// emails the confirmation automatically; nothing else to wire up here.
+const GOOGLE_CALENDAR_SRC =
+  "https://calendar.google.com/calendar/appointments/schedules/AcZssZ2XCYOp4PaYsIHHB5TVx5eNnMHgXdcOef_zBzoxsmrScPEyoF1cBXICbVzJADso5gYDAvymFF7Q?gv=true";
 
 /** The booking block: the reasons on the left, the scheduling widget on the right. */
 export function BookingPanel() {
@@ -15,29 +19,17 @@ export function BookingPanel() {
         <Reveal>
           <h2 className="t-h2 mt-5 max-w-md">{booking.title}</h2>
         </Reveal>
-        <ul className="mt-8 flex flex-col gap-3">
-          {booking.points.map((point) => (
-            <li key={point} className="t-body flex gap-3">
-              <CheckIcon className="mt-1.5 shrink-0" />
-              <span>{point}</span>
-            </li>
-          ))}
-        </ul>
+        <p className="t-body mt-8 max-w-md text-gray">{booking.note}</p>
       </div>
 
       <div className="lg:col-span-7">
-        <div
-          className="flex min-h-[380px] w-full flex-col items-center justify-center gap-3 rounded-xl border border-dashed border-ink/25 bg-paper px-8 text-center"
-          role="img"
-          aria-label="Emplacement réservé au widget de prise de rendez-vous (Cal.com ou Calendly), à connecter"
-        >
-          <p className="t-h3">
-            <NoBreak>Widget de prise de rendez-vous</NoBreak>
-          </p>
-          <p className="t-small max-w-xs text-gray">
-            Intégration Cal.com ou Calendly à connecter — hébergement en Union européenne,
-            conformément au cahier des charges.
-          </p>
+        <div className="w-full overflow-hidden rounded-xl bg-paper">
+          <iframe
+            src={GOOGLE_CALENDAR_SRC}
+            title="Prise de rendez-vous TCA Backoffice"
+            loading="lazy"
+            className="block h-[800px] w-full border-0 md:h-[700px]"
+          />
         </div>
       </div>
     </div>
