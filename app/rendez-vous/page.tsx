@@ -42,12 +42,12 @@ export default function RendezVousPage() {
             <p className="t-lead mt-5 max-w-md text-gray">{writeInstead.lede}</p>
             <div className="zoom relative mt-8 hidden aspect-[4/3] w-full overflow-hidden rounded-xl bg-mist lg:block">
               <Image
-                src={IMAGES.handPen.src}
-                alt={IMAGES.handPen.alt}
+                src={IMAGES.rendezVousFormulaire.src}
+                alt={IMAGES.rendezVousFormulaire.alt}
                 fill
                 sizes="30vw"
                 className="object-cover"
-                style={{ objectPosition: "72% 40%" }}
+                style={{ objectPosition: IMAGES.rendezVousFormulaire.position }}
               />
             </div>
           </div>

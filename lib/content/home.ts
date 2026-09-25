@@ -64,17 +64,17 @@ export const HOME = {
       {
         n: "01",
         title: "Un premier rappel avant l'échéance.",
-        text: "Un message courtois pour rappeler la date. Souvent, c'est tout ce qu'il faut.",
+        text: "Un message courtois est envoyé à votre client quelques jours avant la date prévue. Dans la plupart des cas, il suffit.",
       },
       {
         n: "02",
         title: "Une relance à échéance dépassée.",
-        text: "Un courrier posé, formel, rappelant les conditions. La conversation reste professionnelle.",
+        text: "Un courrier formel lui rappelle le montant dû et les conditions de paiement, sur un ton toujours professionnel.",
       },
       {
         n: "03",
         title: "Une mise en demeure si nécessaire.",
-        text: "Un recommandé, ferme, adossé aux CGV. Ce cas reste minoritaire — mais il est traité.",
+        text: "En dernier recours, nous préparons une mise en demeure en recommandé, fondée sur vos conditions contractuelles : devis signé, contrat ou conditions générales.",
       },
     ],
   },
@@ -98,7 +98,7 @@ export const HOME = {
       {
         keyword: "Ouverte.",
         title: "Communication proactive",
-        text: "Dès qu'un dossier avance ou qu'un point requiert votre décision, vous en êtes informée par mail.",
+        text: "Un dossier avance ? Vous le savez par mail.",
       },
     ],
     cta: { label: "Voir les engagements en détail", href: "/pourquoi-nous" },

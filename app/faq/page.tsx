@@ -38,12 +38,12 @@ export default function FaqPage() {
                 </p>
                 <div className="relative mt-10 hidden aspect-[16/10] w-full max-w-lg overflow-hidden rounded-xl bg-mist lg:block">
                   <Image
-                    src={IMAGES.parisRoof.src}
-                    alt={IMAGES.parisRoof.alt}
+                    src={IMAGES.faqHero.src}
+                    alt={IMAGES.faqHero.alt}
                     fill
                     sizes="30vw"
                     className="object-cover"
-                    style={{ objectPosition: IMAGES.parisRoof.position }}
+                    style={{ objectPosition: IMAGES.faqHero.position }}
                   />
                 </div>
               </div>

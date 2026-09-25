@@ -27,12 +27,7 @@ export default function PourquoiNousPage() {
 
   return (
     <>
-      <PageHero
-        eyebrow={hero.eyebrow}
-        title={hero.title}
-        lede={hero.lede}
-        image={{ ...IMAGES.parisBalconies, position: "50% 38%" }}
-      />
+      <PageHero eyebrow={hero.eyebrow} title={hero.title} lede={hero.lede} image={IMAGES.pourquoiNousHero} />
 
       <Section pad="tight" size="display">
         <h2 className="sr-only">{oppositionsHeading}</h2>
@@ -52,12 +47,11 @@ export default function PourquoiNousPage() {
           <div className="grid rounded-[18px] bg-mist p-3 lg:grid-cols-12 lg:gap-3">
             <div className="zoom relative aspect-[4/3] overflow-hidden rounded-xl lg:col-span-5 lg:aspect-auto lg:min-h-[560px]">
               <Image
-                src={IMAGES.parisGolden.src}
-                alt={IMAGES.parisGolden.alt}
+                src={IMAGES.quiNousSommes.src}
+                alt={IMAGES.quiNousSommes.alt}
                 fill
                 sizes="(min-width: 1024px) 40vw, 100vw"
                 className="object-cover"
-                style={{ objectPosition: "50% 40%" }}
               />
             </div>
             <div className="px-4 py-8 md:px-10 md:py-12 lg:col-span-7 lg:px-14">

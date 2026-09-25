@@ -23,7 +23,7 @@ export default function FormulesPage() {
 
   return (
     <>
-      <PageHero eyebrow={hero.eyebrow} title={hero.title} lede={hero.lede} image={IMAGES.deskMug} />
+      <PageHero eyebrow={hero.eyebrow} title={hero.title} lede={hero.lede} image={IMAGES.formulesHero} />
 
       {/* TCA-Recommandations.pdf §3's detailed sheets stay removed (a doublon
           of the comparison table below), but the client asked for the price
@@ -78,8 +78,8 @@ export default function FormulesPage() {
             </div>
             <div className="zoom relative aspect-[4/3] overflow-hidden rounded-xl lg:col-span-6 lg:aspect-auto lg:min-h-[420px]">
               <Image
-                src={IMAGES.archiveWarehouse.src}
-                alt={IMAGES.archiveWarehouse.alt}
+                src={IMAGES.formulesFaireEvoluer.src}
+                alt={IMAGES.formulesFaireEvoluer.alt}
                 fill
                 sizes="(min-width: 1024px) 50vw, 100vw"
                 className="object-cover"

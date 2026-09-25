@@ -8,7 +8,7 @@ export const SERVICES_PAGE = {
   hero: {
     eyebrow: "Nos services",
     title: "Packs récurrents et services à la carte.",
-    lede: "Packs d'assistance administrative et services à la carte : mise en page, présentations, courriers, traitement d'archives.",
+    lede: "Packs d'assistance administrative et services à la carte : mise en page, présentations, courriers, archivage numérique.",
   },
   packs: {
     id: "packs",
@@ -44,8 +44,8 @@ export const SERVICES_PAGE = {
       },
       {
         n: "05",
-        title: "Traitement d'archives",
-        text: "Numérisation, classement et indexation d'archives papier ou de sauvegardes numériques.",
+        title: "Archivage numérique",
+        text: "Classement, indexation et archivage de vos documents numériques et de vos scans, dans un espace organisé et facile à consulter.",
       },
     ],
     cta: {

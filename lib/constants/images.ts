@@ -170,6 +170,53 @@ export const IMAGES = {
     "Deux collègues consultant des documents devant un ordinateur portable",
     "50% 35%"
   ),
+  // Second batch of client-supplied photos, added 2026-09-25.
+  relanceMiseEnDemeure: p(
+    "relance-mise-en-demeure",
+    1760,
+    1328,
+    "Enveloppe posée sur une pile de courriers, stylo à plume à côté"
+  ),
+  formulesHero: p(
+    "formules-hero",
+    2048,
+    1024,
+    "Conseillère en visioconférence devant un document de formule",
+    "50% 30%"
+  ),
+  formulesFaireEvoluer: p(
+    "formules-faire-evoluer",
+    2048,
+    1168,
+    "Bureau à deux écrans, imprimante et casque audio"
+  ),
+  faqHero: p(
+    "faq-hero",
+    1536,
+    2048,
+    "Personne prenant des notes pendant un appel en visioconférence",
+    "50% 25%"
+  ),
+  quiNousSommes: p(
+    "qui-nous-sommes",
+    2048,
+    1638,
+    "Trois collègues consultant un écran ensemble dans un bureau"
+  ),
+  pourquoiNousHero: p(
+    "pourquoi-nous-hero",
+    2048,
+    1168,
+    "Référente au téléphone devant son ordinateur portable",
+    "50% 38%"
+  ),
+  rendezVousFormulaire: p(
+    "rendez-vous-formulaire",
+    1392,
+    2048,
+    "Mains tapant sur un ordinateur portable, téléphone posé à côté",
+    "60% 30%"
+  ),
 } as const;
 
 export type PhotoKey = keyof typeof IMAGES;

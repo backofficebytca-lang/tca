@@ -18,7 +18,7 @@ import { PENDING } from "@/lib/constants/site";
 export const metadata: Metadata = {
   title: "Packs récurrents et services à la carte | TCA Backoffice",
   description:
-    "Packs d'assistance administrative et services à la carte : mise en page, présentations, courriers, traitement d'archives.",
+    "Packs d'assistance administrative et services à la carte : mise en page, présentations, courriers, archivage numérique.",
   alternates: { canonical: "/services" },
 };
 

@@ -6,7 +6,11 @@ import { StackedCards } from "@/components/sections/StackedCards";
 import { HOME } from "@/lib/content/home";
 import { IMAGES } from "@/lib/constants/images";
 
-const PHOTOS = [IMAGES.relancePremierRappel, IMAGES.relanceEcheanceDepassee, IMAGES.handPen];
+const PHOTOS = [
+  IMAGES.relancePremierRappel,
+  IMAGES.relanceEcheanceDepassee,
+  IMAGES.relanceMiseEnDemeure,
+];
 
 /** The three reminder steps as the reference's stacked cards. */
 export function RelancesStack() {
