@@ -24,11 +24,11 @@ export const metadata: Metadata = {
 
 /** One photograph per à-la-carte service, in the order of the list. */
 const SERVICE_PHOTOS = [
-  IMAGES.deskLaptop,
+  IMAGES.serviceMiseEnPage,
   IMAGES.deskSunlit,
-  IMAGES.deskMug,
-  IMAGES.envelopes,
-  IMAGES.archiveShelves,
+  IMAGES.serviceRefonteModeles,
+  IMAGES.serviceRedactionCourriers,
+  IMAGES.serviceTraitementArchives,
 ];
 
 export default function ServicesPage() {
@@ -37,12 +37,7 @@ export default function ServicesPage() {
 
   return (
     <>
-      <PageHero
-        eyebrow={hero.eyebrow}
-        title={hero.title}
-        lede={hero.lede}
-        image={{ ...IMAGES.archiveWarehouse, position: "50% 40%" }}
-      />
+      <PageHero eyebrow={hero.eyebrow} title={hero.title} lede={hero.lede} image={IMAGES.servicesHero} />
 
       {/* A — recurring packs: the three formulas, summarised and linked. */}
       <Section id={packs.id} size="display">

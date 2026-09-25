@@ -47,6 +47,8 @@ next-env.d.ts
 /.claude/
 /TCA LOGOS/
 /TCA-Backoffice-Note-Modifications-v5.pdf
+/TCA-Recommandations.pdf
+/images_replaces/
 /screens/
 
 # Client reference capture (Framer template) — inspiration only

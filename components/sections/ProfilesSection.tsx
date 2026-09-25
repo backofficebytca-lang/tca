@@ -6,7 +6,7 @@ import { Reveal } from "@/components/motion/Reveal";
 import { HOME } from "@/lib/content/home";
 import { IMAGES } from "@/lib/constants/images";
 
-const PHOTOS = [IMAGES.deskMug, IMAGES.deskSunlit, IMAGES.glassCorridor];
+const PHOTOS = [IMAGES.artisanAtelier, IMAGES.tpeEquipeLivraison, IMAGES.pmeBureauOpenSpace];
 
 /**
  * Centered introduction, then the three profiles as soft grey cards with a

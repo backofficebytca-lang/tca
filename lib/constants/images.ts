@@ -86,9 +86,97 @@ export const IMAGES = {
     2400,
     "Façade d'immeuble à la trame orange en perspective"
   ),
+  // Client-supplied photos (images_replaces/), added 2026-09-25.
+  artisanAtelier: p(
+    "artisans-atelier",
+    2048,
+    1536,
+    "Artisan souriant consultant son téléphone dans son atelier de menuiserie"
+  ),
+  tpeEquipeLivraison: p(
+    "tpe-equipe-livraison",
+    1280,
+    960,
+    "Petite équipe posant devant sa camionnette de livraison"
+  ),
+  pmeBureauOpenSpace: p(
+    "pme-bureau-open-space",
+    1280,
+    960,
+    "Open space animé d'une PME avec plusieurs équipes au travail"
+  ),
+  formuleStarter: p(
+    "formule-starter",
+    2368,
+    1792,
+    "Bureau avec ordinateur portable, papiers et mètre ruban"
+  ),
+  formuleEssentiel: p(
+    "formule-essentiel",
+    1024,
+    768,
+    "Main posée sur un classeur « Accounting » à côté d'un ordinateur portable"
+  ),
+  formuleSurMesure: p(
+    "formule-sur-mesure",
+    1760,
+    1328,
+    "Dossiers et chemises classés sur une table de réunion baignée de lumière"
+  ),
+  relancePremierRappel: p(
+    "relance-premier-rappel",
+    1760,
+    1328,
+    "Calendrier de bureau avec une date entourée, à côté d'un téléphone"
+  ),
+  relanceEcheanceDepassee: p(
+    "relance-echeance-depassee",
+    1760,
+    1328,
+    "Personne consultant son téléphone devant un ordinateur portable"
+  ),
+  serviceMiseEnPage: p(
+    "service-mise-en-page",
+    2400,
+    1340,
+    "Personne écrivant sur un document posé sur un bureau",
+    "50% 40%"
+  ),
+  serviceRefonteModeles: p(
+    "service-refonte-modeles",
+    2400,
+    1340,
+    "Deux personnes comparant un document imprimé et un ordinateur portable",
+    "50% 40%"
+  ),
+  serviceRedactionCourriers: p(
+    "service-redaction-courriers",
+    2400,
+    1340,
+    "Personne sortant une lettre manuscrite de son enveloppe",
+    "50% 40%"
+  ),
+  serviceTraitementArchives: p(
+    "service-traitement-archives",
+    2400,
+    1340,
+    "Ordinateur portable affichant une liste de fichiers archivés",
+    "50% 45%"
+  ),
+  servicesHero: p(
+    "services-hero",
+    2400,
+    1340,
+    "Deux collègues consultant des documents devant un ordinateur portable",
+    "50% 35%"
+  ),
 } as const;
 
 export type PhotoKey = keyof typeof IMAGES;
 
 /** One photograph per formula, in card order (Starter, Essentiel, Sur-mesure). */
-export const FORMULA_PHOTOS = [IMAGES.envelopes, IMAGES.deskLaptop, IMAGES.facadeOrange] as const;
+export const FORMULA_PHOTOS = [
+  IMAGES.formuleStarter,
+  IMAGES.formuleEssentiel,
+  IMAGES.formuleSurMesure,
+] as const;
