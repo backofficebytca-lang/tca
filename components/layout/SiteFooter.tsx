@@ -60,6 +60,7 @@ export function SiteFooter() {
                       {SITE.contactEmail}
                     </a>
                   </li>
+                  {SITE.whatsappEnabled && (
                   <li>
                     <a
                       href={SITE.whatsappLink}
@@ -71,6 +72,7 @@ export function SiteFooter() {
                       {SITE.whatsappNumber}
                     </a>
                   </li>
+                  )}
                   <li>Horaires {SITE.hoursDetail}</li>
                 </ul>
               )}

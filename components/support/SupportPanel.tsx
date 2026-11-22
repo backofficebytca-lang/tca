@@ -98,6 +98,7 @@ export function SupportPanel() {
           </span>
         </a>
 
+        {SITE.whatsappEnabled && (
         <a
           href={SITE.whatsappLink}
           target="_blank"
@@ -116,6 +117,7 @@ export function SupportPanel() {
             →
           </span>
         </a>
+        )}
       </div>
 
       <button

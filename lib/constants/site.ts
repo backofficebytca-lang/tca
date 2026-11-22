@@ -8,6 +8,8 @@ export const SITE = {
   legalPositioningShort: "assistance administrative externalisée",
   contactEmail: "contact@tca-backoffice.fr",
   // TCA-Recommandations.pdf §9 — WhatsApp replaces the pending direct line.
+  // Hidden for now: the number is changing. Set back to true with the new number.
+  whatsappEnabled: false,
   whatsappNumber: "+33 7 80 75 58 57",
   whatsappLink: "https://wa.me/33780755857",
   hours: "8h–18h",
